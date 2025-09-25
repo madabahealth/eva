@@ -6,7 +6,7 @@
     <title>نظام تقييم أداء الموظفين</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="logo.png" rel="stylesheet">
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
@@ -488,11 +488,107 @@
         .required-input {
             border: 2px solid red !important;
         }
+        
+        /* نمط للجدول الجديد في نموذج الإدارة الوسطى */
+        .middle-management-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+        
+        .middle-management-table th,
+        .middle-management-table td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+            text-align: center;
+        }
+        
+        .middle-management-table th {
+            background-color: #eef5f5;
+            color: #444;
+            font-weight: 600;
+        }
+        
+        .middle-management-table .competency-cell {
+            text-align: right;
+            font-weight: 500;
+        }
+        
+        .middle-management-table .importance-input,
+        .middle-management-table .achieved-input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        
+        .middle-management-table .score-input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1em;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+        
+        /* تنسيق خاص لحقول المجاميع في جدول الإدارة الوسطى */
+        .middle-management-table .total-row td {
+            background-color: #e6f2f9;
+            font-weight: bold;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .middle-management-table .total-row .total-importance-cell {
+            background-color: #e6f2f9;
+            font-weight: bold;
+            color: #2c3e50;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        .middle-management-table .total-row .total-score-cell {
+            background-color: #e6f2f9;
+            font-weight: bold;
+            color: #2c3e50;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 1.1em;
+        }
+        
+        .middle-management-table .final-evaluation-row td {
+            background-color: #dbe9f5;
+            font-weight: bold;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .middle-management-table .final-evaluation-row .final-evaluation-cell {
+            background-color: #dbe9f5;
+            font-weight: bold;
+            color: #2c3e50;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+            text-align: center;
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://via.placeholder.com/150" alt="شعار مديرية صحة مادبا" style="display: block; margin: 0 auto 20px auto; max-width: 150px; height: auto;">
+        <img src="logo.png" alt="شعار مديرية صحة مادبا" style="display: block; margin: 0 auto 20px auto; max-width: 150px; height: auto;">
         <h3 class="header-title-main">المملكة الأردنية الهاشمية</h3>
         <h4 class="header-title-sub">مديرية صحة محافظة مادبا</h4>
         <h1 class="header-title-page">نظام تقييم أداء الموظفين</h1>
@@ -538,10 +634,82 @@
                 <div id="tab3-error-message" class="error-message" style="display: none;"></div>
             </div>
 
-           
+            <!-- نموذج تقييم وظائف الإدارة الوسطى - الجدول الجديد للكفايات -->
+            <div id="middleManagementTab" class="tab-content" style="display: none;">
+                <h3 id="middleManagementTab-title">الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء</h3>
+                <p>الرجاء إدخال البيانات الخاصة بالتقييم:</p>
+                <table class="middle-management-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">الكفايات السلوكية والقيادية</th>
+                            <th style="width: 20%;">الأهمية النسبية</th>
+                            <th style="width: 20%;">النسبة المحققة من الكفاية</th>
+                            <th style="width: 10%;">العلامة المستحقة للكفاية لدى الموظف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="middleManagement-tbody">
+                        <tr data-competency="communication">
+                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="score-input numeric-input" readonly></td>
+                        </tr>
+                        <tr data-competency="problemSolving">
+                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="score-input numeric-input" readonly></td>
+                        </tr>
+                        <tr data-competency="customerOrientation">
+                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="score-input numeric-input" readonly></td>
+                        </tr>
+                        <tr data-competency="accountability">
+                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="score-input numeric-input" readonly></td>
+                        </tr>
+                        <tr data-competency="innovation">
+                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="score-input numeric-input" readonly></td>
+                        </tr>
+                        <!-- الصفان الإضافيان -->
+                        <tr data-competency="teamwork">
+                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="score-input numeric-input" readonly></td>
+                        </tr>
+                        <tr data-competency="leadership">
+                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                            <td><input type="text" class="score-input numeric-input" readonly></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <th colspan="1" style="text-align: right;">المجموع</th>
+                            <td class="total-importance-cell">100%</td>
+                            <td></td>
+                            <td class="total-score-cell"><input type="text" id="totalMiddleManagementScore" class="total-value-input numeric-input" readonly style="border: none; background-color: transparent; color: #2c3e50; font-weight: bold; font-size: 1.1em; width: 100%; text-align: center;"></td>
+                        </tr>
+                        <tr class="final-evaluation-row">
+                            <th colspan="3" style="text-align: right;">التقييم النهائي</th>
+                            <td class="final-evaluation-cell"><input type="text" id="finalMiddleManagementEvaluation" class="total-value-input numeric-input" readonly style="border: none; background-color: transparent; color: #2c3e50; font-weight: bold; font-size: 1.1em; width: 100%; text-align: center;"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div id="middleManagement-error-message" class="error-message" style="display: none;"></div>
+            </div>
 
             <div id="tab1" class="tab-content">
-                <h3 id="tab1-title">التقييم النهائي للكفايات</h3>
+                <h3 id="tab1-title">الكفايات ويخصص له ما نسبته (20%) من تقييم الأداء</h3>
                 <p>الرجاء إدخال البيانات الخاصة بالتقييم:</p>
                 <table class="evaluation-table">
                     <thead>
@@ -666,7 +834,7 @@
                             <td><input type="text" class="deserved-percentage numeric-input centered-input required-input" oninput="calculateAllTab2()" min="0"></td>
                         </tr>
                         <tr data-item="volunteering">
-                            <td class="competency-name">القيام بأنشطة تطوعية ضمن المسؤولية المجيتم عية للدائرة.</td>
+                            <td class="competency-name">القيام بأنشطة تطوعية ضمن المسؤولية المجتمعية للدائرة.</td>
                             <td><input type="text" class="max-score-input numeric-input centered-input required-input" oninput="calculateAllTab2()" min="0"></td>
                             <td><input type="text" class="deserved-percentage numeric-input centered-input required-input" oninput="calculateAllTab2()" min="0"></td>
                         </tr>
@@ -682,8 +850,6 @@
                 <div id="tab2-error-message" class="error-message" style="display: none;"></div>
             </div>
 
-         
-
             <div id="tab4" class="tab-content">
                 <h3>تقييم الأداء</h3>
                 <p>يرجى  إدراج النتائج التي يتم  احتسابها في الجزء الثاني من هذا النموذج:</p>
@@ -694,7 +860,7 @@
                             <td><input type="text" id="summaryTab3Mark" class="numeric-input" readonly></td>
                         </tr>
                         <tr>
-                            <th id="summary-tab1-title">ب- التقييم النهائي للكفايات</th>
+                            <th id="summary-tab1-title">ب- الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء</th>
                             <td><input type="text" id="summaryTab1Evaluation" class="numeric-input" readonly></td>
                         </tr>
                         <tr>
@@ -741,7 +907,7 @@
             </div>
 
             <div id="supportServicesTab1" class="tab-content">
-                <h3 id="supportServicesTab1-title">التقييم النهائي للكفايات</h3>
+                <h3 id="supportServicesTab1-title">الكفايات ويخصص له ما نسبته (60%) من تقييم الأداء</h3>
                 <p>الرجاء إدخال البيانات الخاصة بالتقييم:</p>
                 <table class="evaluation-table">
                     <thead>
@@ -866,7 +1032,7 @@
                             <td><input type="text" class="deserved-percentage-aux numeric-input centered-input required-input" oninput="calculateAllSupportServicesTab2()" min="0"></td>
                         </tr>
                         <tr data-item="volunteering">
-                            <td class="competency-name">القيام بأنشطة تطوعية ضمن المسؤولية المجيتم عية للدائرة.</td>
+                            <td class="competency-name">القيام بأنشطة تطوعية ضمن المسؤولية المجتمعية للدائرة.</td>
                             <td><input type="text" class="max-score-input-aux numeric-input centered-input required-input" oninput="calculateAllSupportServicesTab2()" min="0"></td>
                             <td><input type="text" class="deserved-percentage-aux numeric-input centered-input required-input" oninput="calculateAllSupportServicesTab2()" min="0"></td>
                         </tr>
@@ -892,7 +1058,7 @@
                             <td><input type="text" id="summarySupportServicesTabMark" class="numeric-input" readonly></td>
                         </tr>
                         <tr>
-                            <th id="summary-supportServicesTab1-title">ب- التقييم النهائي للكفايات</th>
+                            <th id="summary-supportServicesTab1-title">ب- الكفايات ويخصص له ما نسبته (60%) من تقييم الأداء</th>
                             <td><input type="text" id="summarySupportServicesTab1Evaluation" class="numeric-input" readonly></td>
                         </tr>
                         <tr>
@@ -962,7 +1128,7 @@
                         </tr>
                         <tr data-item="selfDevelopment">
                             <td>7</td>
-                            <td>يهيتم  بأهداف الدائرة و رسالتها و يلتزم بقيمها.</td>
+                            <td>يهتم بأهداف الدائرة و رسالتها و يلتزم بقيمها.</td>
                             <td>6</td>
                             <td><input type="text" class="achieved-mark-underTrial numeric-input centered-input required-input" oninput="validateAndCalculateUnderTrialTab(this)" min="0" max="6"></td>
                         </tr>
@@ -992,7 +1158,7 @@
                         </tr>
                         <tr data-item="skillDevelopment">
                             <td>12</td>
-                            <td>يبدي اهيتم اماً مسيتم راً بتطوير الذات و اكتساب المعرفة و تطوير المهارات الضرورية لمجال عمله.</td>
+                            <td>يبدي اهتماماً مسيطراً بتطوير الذات و اكتساب المعرفة و تطوير المهارات الضرورية لمجال عمله.</td>
                             <td>5</td>
                             <td><input type="text" class="achieved-mark-underTrial numeric-input centered-input required-input" oninput="validateAndCalculateUnderTrialTab(this)" min="0" max="5"></td>
                         </tr>
@@ -1075,7 +1241,7 @@
                 weights.tab2MaxScoreSum = 15; // 15% for Support Services
                 weights.tab1Divisor = 20; // 20 for Support Services
             } else if (evaluationType === 'middle') {
-                weights.tab1Weight = 0.20; // 20% for Middle
+                weights.tab1Weight = 0.10; // 10% for Middle Management (تم تغييره من 20% إلى 10%)
                 weights.tab3MaxScoreSum = 70; // 70% for Middle
                 weights.tab2MaxScoreSum = 20; // 20% for Middle
                 weights.tab1Divisor = 10; // 10 for Middle
@@ -1150,10 +1316,46 @@
                     calculateAllSupportServicesTab1();
                     calculateAllSupportServicesTab2();
                     updateSupportServicesTab4Summary(); // تحديث التبويب الرابع بعد حسابات كل التبويبات الأخرى
-                } else {
-                    // إظهار التبويبات القياسية (وظائف تخصصية وخدمات مساندة ووظائف وسطى)
+                } else if (evaluationType === 'middle') {
+                    // إظهار التبويبات الخاصة بنموذج تقييم وظائف الإدارة الوسطى
                     document.querySelectorAll('.tab-content').forEach(tab => {
-                        if (!tab.id.startsWith('supportServicesTab') && tab.id !== 'underTrialTab') {
+                        if (tab.id === 'tab3' || tab.id === 'tab2' || tab.id === 'tab4' || tab.id === 'middleManagementTab') {
+                            tab.style.display = 'block';
+                        } else {
+                            tab.style.display = 'none';
+                        }
+                    });
+
+                    if (!tab3RowsGenerated) {
+                        generateTab3Rows(); // إنشاء الصفوف الافتراضية
+                        tab3RowsGenerated = true;
+                    }
+                    calculateAllTab3();
+                    calculateMiddleManagement(); // حساب الجدول الجديد للإدارة الوسطى
+                    calculateAllTab2();
+                    updateTab4Summary(); // تحديث التبويب الرابع بعد حسابات كل التبويبات الأخرى
+                } else if (evaluationType === 'supportServices') {
+                    // إظهار التبويبات الخاصة بنموذج الوظائف الإدارية والمهنية المساندة
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        if (tab.id === 'tab1' || tab.id === 'tab2' || tab.id === 'tab3' || tab.id === 'tab4') {
+                            tab.style.display = 'block';
+                        } else {
+                            tab.style.display = 'none';
+                        }
+                    });
+
+                    if (!tab3RowsGenerated) {
+                        generateTab3Rows(); // إنشاء الصفوف الافتراضية
+                        tab3RowsGenerated = true;
+                    }
+                    calculateAllTab3();
+                    calculateAllTab1();
+                    calculateAllTab2();
+                    updateTab4Summary(); // تحديث التبويب الرابع بعد حسابات كل التبويبات الأخرى
+                } else if (evaluationType === 'specialized') {
+                    // إظهار التبويبات الخاصة بنموذج الوظائف التخصصية
+                    document.querySelectorAll('.tab-content').forEach(tab => {
+                        if (tab.id === 'tab1' || tab.id === 'tab2' || tab.id === 'tab3' || tab.id === 'tab4') {
                             tab.style.display = 'block';
                         } else {
                             tab.style.display = 'none';
@@ -1178,50 +1380,146 @@
             if (evaluationType === 'specialized') {
                 // نموذج الوظائف التخصصية
                 document.getElementById('tab3-title').textContent = 'مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (65%)';
-                document.getElementById('tab1-title').textContent = 'التقييم النهائي للكفايات (20%)';
+                document.getElementById('tab1-title').textContent = 'الكفايات ويخصص له ما نسبته (20%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستحقة لعناصر التميز الوظيفي (15)';
                 
                 // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-tab3-title').textContent = 'أ- مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (65%)';
-                document.getElementById('summary-tab1-title').textContent = 'ب- التقييم النهائي للكفايات (20%)';
+                document.getElementById('summary-tab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (20%) من تقييم الأداء';
                 document.getElementById('summary-tab2-title').textContent = 'ج- مجموع النسبة المستحقة لعناصر التميز الوظيفي (15)';
             } 
             else if (evaluationType === 'supportServices') {
                 // نموذج الوظائف الإدارية والمهنية المساندة
                 document.getElementById('tab3-title').textContent = 'مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (55%)';
-                document.getElementById('tab1-title').textContent = 'التقييم النهائي للكفايات (30%)';
+                document.getElementById('tab1-title').textContent = 'الكفايات ويخصص له ما نسبته (30%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستحقة لعناصر التميز الوظيفي (15)';
                 
                 // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-tab3-title').textContent = 'أ- مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (55%)';
-                document.getElementById('summary-tab1-title').textContent = 'ب- التقييم النهائي للكفايات (30%)';
+                document.getElementById('summary-tab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (30%) من تقييم الأداء';
                 document.getElementById('summary-tab2-title').textContent = 'ج- مجموع النسبة المستحقة لعناصر التميز الوظيفي (15)';
             }
             else if (evaluationType === 'auxiliaryServices') {
                 // نموذج تقييم وظائف الخدمات المساعدة والحرفية
                 document.getElementById('supportServicesTab-title').textContent = 'مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (30%)';
-                document.getElementById('supportServicesTab1-title').textContent = 'التقييم النهائي للكفايات (60%)';
+                document.getElementById('supportServicesTab1-title').textContent = 'الكفايات ويخصص له ما نسبته (60%) من تقييم الأداء';
                 document.getElementById('supportServicesTab2-title').textContent = 'مجموع النسبة المستحقة لعناصر التميز الوظيفي (10)';
                 
                 // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-supportServicesTab-title').textContent = 'أ- مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (30%)';
-                document.getElementById('summary-supportServicesTab1-title').textContent = 'ب- التقييم النهائي للكفايات (60%)';
+                document.getElementById('summary-supportServicesTab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (60%) من تقييم الأداء';
                 document.getElementById('summary-supportServicesTab2-title').textContent = 'ج- مجموع النسبة المستحقة لعناصر التميز الوظيفي (10)';
             }
             else if (evaluationType === 'middle') {
                 // نموذج تقييم وظائف الإدارة الوسطى
                 document.getElementById('tab3-title').textContent = 'مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (70%)';
-                document.getElementById('tab1-title').textContent = 'التقييم النهائي للكفايات (20%)';
+                document.getElementById('middleManagementTab-title').textContent = 'الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستحقة لعناصر التميز الوظيفي (20)';
                 
                 // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-tab3-title').textContent = 'أ- مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (70%)';
-                document.getElementById('summary-tab1-title').textContent = 'ب- التقييم النهائي للكفايات (20%)';
+                document.getElementById('summary-tab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء';
                 document.getElementById('summary-tab2-title').textContent = 'ج- مجموع النسبة المستحقة لعناصر التميز الوظيفي (20)';
             }
         }
 
-        // دالة حسابات التبويب الأول (الكفايات) - يتم  تعديلها للسماح بإدخال النسبة المحققة
+        // دالة حسابات الجدول الجديد لنموذج تقييم وظائف الإدارة الوسطى
+        function calculateMiddleManagement() {
+            let totalScore = 0;
+            const competencyRows = document.querySelectorAll('#middleManagement-tbody tr[data-competency]');
+            const errorMessageDiv = document.getElementById('middleManagement-error-message');
+            errorMessageDiv.style.display = 'none';
+
+            let hasError = false;
+            let hasEmptyField = false;
+            let hasImportanceError = false;
+            let totalImportance = 0; // سنستخدم هذا للتحقق فقط
+            
+            competencyRows.forEach(row => {
+                const importanceInput = row.querySelector('.importance-input');
+                const achievedInput = row.querySelector('.achieved-input');
+                const scoreInput = row.querySelector('.score-input');
+
+                let importance = parseFloat(importanceInput.value) || 0;
+                let achieved = parseFloat(achievedInput.value) || 0;
+
+                importanceInput.style.borderColor = '';
+                achievedInput.style.borderColor = '';
+
+                // التحقق من وجود قيمة في حقل الأهمية النسبية
+                if (importanceInput.value === '' || importanceInput.value === null) {
+                    importanceInput.classList.add('required-input');
+                    hasEmptyField = true;
+                    importance = 0;
+                } 
+                // التحقق من صحة الأهمية النسبية
+                else if (isNaN(importance) || importance < 0 || importance > 100) {
+                    importanceInput.classList.add('required-input');
+                    if (!hasError) {
+                        errorMessageDiv.textContent = 'الرجاء إدخال نسبة مئوية صحيحة بين 0 و 100 في حقل الأهمية النسبية.';
+                        errorMessageDiv.style.display = 'block';
+                        hasError = true;
+                    }
+                    importance = 0;
+                } else {
+                    importanceInput.classList.remove('required-input');
+                    totalImportance += importance;
+                }
+
+                // التحقق من وجود قيمة في حقل النسبة المحققة
+                if (achievedInput.value === '' || achievedInput.value === null) {
+                    achievedInput.classList.add('required-input');
+                    hasEmptyField = true;
+                    achieved = 0;
+                } 
+                // التحقق من صحة النسبة المحققة
+                else if (isNaN(achieved) || achieved < 0 || achieved > 100) {
+                    achievedInput.classList.add('required-input');
+                    if (!hasError) {
+                        errorMessageDiv.textContent = 'الرجاء إدخال نسبة مئوية صحيحة بين 0 و 100 في حقل النسبة المحققة.';
+                        errorMessageDiv.style.display = 'block';
+                        hasError = true;
+                    }
+                    achieved = 0;
+                } else {
+                    achievedInput.classList.remove('required-input');
+                }
+
+                let calculatedScore = (importance * achieved) / 100;
+                scoreInput.value = formatOutputValue(calculatedScore);
+
+                totalScore += calculatedScore;
+            });
+
+            // التحقق من مجموع الأهمية النسبية - يجب أن يكون بالضبط 100
+            if (totalImportance !== 100) {
+                if (!hasImportanceError) {
+                    errorMessageDiv.textContent = 'خطأ: مجموع الأهمية النسبية يجب أن يكون بالضبط 100%. الرجاء تعديل القيم.';
+                    errorMessageDiv.style.display = 'block';
+                    hasImportanceError = true;
+                }
+                competencyRows.forEach(row => {
+                    row.querySelector('.importance-input').style.borderColor = 'red';
+                });
+            }
+
+            // عرض رسالة خاصة للحقول الفارغة
+            if (hasEmptyField && !hasError && !hasImportanceError) {
+                errorMessageDiv.textContent = 'الرجاء إدخال قيمة في جميع الحقول المطلوبة.';
+                errorMessageDiv.style.display = 'block';
+            }
+
+            // عرض قيمة مجموع العلامة المستحقة
+            document.getElementById('totalMiddleManagementScore').value = formatOutputValue(totalScore);
+
+            // التقييم النهائي = مجموع العلامة المستحقة للكفاية لدى الموظف × 10%
+            let finalEvaluation = totalScore * 0.1;
+            document.getElementById('finalMiddleManagementEvaluation').value = formatOutputValue(finalEvaluation);
+
+            updateTab4Summary();
+        }
+
+        // دالة حسابات التبويب الأول (الكفايات)
         function calculateAllTab1() {
             const evaluationType = document.getElementById('evaluationType').value;
             let totalActualLevel = 0;
@@ -1641,7 +1939,7 @@
             `;
             tbody.appendChild(totalRow);
 
-            // إضافة مسيتم عي الأحداث للحقول الجديدة
+            // إضافة مستمعي الأحداث للحقول الجديدة
             document.querySelectorAll('#tab3 .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllTab3);
                 input.addEventListener('change', calculateAllTab3);
@@ -1698,7 +1996,7 @@
             `;
             tbody.appendChild(totalRow);
 
-            // إضافة مسيتم عين للأحداث للحقول الجديدة
+            // إضافة مستمعي الأحداث للحقول الجديدة
             document.querySelectorAll('#supportServicesTab .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllSupportServicesTab);
                 input.addEventListener('change', calculateAllSupportServicesTab);
@@ -1864,7 +2162,15 @@
             }
 
             const tab3Mark = parseFloat(document.getElementById('totalDeservedMarkTab3').value) || 0;
-            const tab1Evaluation = parseFloat(document.getElementById('finalEvaluation').value) || 0;
+            let tab1Evaluation = 0;
+            
+            // إذا كان نموذج الإدارة الوسطى، استخدم قيمة التقييم من الجدول الجديد
+            if (evaluationType === 'middle') {
+                tab1Evaluation = parseFloat(document.getElementById('finalMiddleManagementEvaluation').value) || 0;
+            } else {
+                tab1Evaluation = parseFloat(document.getElementById('finalEvaluation').value) || 0;
+            }
+            
             const tab2Percentage = parseFloat(document.getElementById('totalDeservedPercentage').value) || 0;
 
             document.getElementById('summaryTab3Mark').value = formatOutputValue(tab3Mark);
@@ -1876,15 +2182,15 @@
 
             let overallGrade = '';
             if (finalTotalScore >= 90) {
-                overallGrade = 'إنجاز المهام بتقدير عام ممتاز';
+                overallGrade = 'إنجاز المهام ممتاز';
             } else if (finalTotalScore >= 80) {
-                overallGrade = 'إنجاز المهام بتقدير عام جيد جداً';
+                overallGrade = 'إنجاز المهام جيد جداً';
             } else if (finalTotalScore >= 70) {
-                overallGrade = 'إنجاز المهام بتقدير عام جيد';
+                overallGrade = 'إنجاز المهام جيد';
             } else if (finalTotalScore >= 60) {
-                overallGrade = 'إنجاز المهام بتقدير عام مقبول';
+                overallGrade = 'إنجاز المهام مقبول';
             } else {
-                overallGrade = 'إنجاز المهام بتقدير عام ضعيف';
+                overallGrade = 'إنجاز المهام ضعيف';
             }
             document.getElementById('overallGrade').value = overallGrade;
         }
@@ -1904,15 +2210,15 @@
 
             let overallGrade = '';
             if (finalTotalScore >= 90) {
-                overallGrade = 'إنجاز المهام بتقدير عام ممتاز';
+                overallGrade = 'إنجاز المهام ممتاز';
             } else if (finalTotalScore >= 80) {
-                overallGrade = 'إنجاز المهام بتقدير عام جيد جداً';
+                overallGrade = 'إنجاز المهام جيد جداً';
             } else if (finalTotalScore >= 70) {
-                overallGrade = 'إنجاز المهام بتقدير عام جيد';
+                overallGrade = 'إنجاز المهام جيد';
             } else if (finalTotalScore >= 60) {
-                overallGrade = 'إنجاز المهام بتقدير عام مقبول';
+                overallGrade = 'إنجاز المهام مقبول';
             } else {
-                overallGrade = 'إنجاز المهام بتقدير عام ضعيف';
+                overallGrade = 'إنجاز المهام ضعيف';
             }
             document.getElementById('overallGradeAux').value = overallGrade;
         }
@@ -1979,15 +2285,15 @@
 
             let overallGrade = '';
             if (totalAchievedScore >= 90) {
-                overallGrade = 'إنجاز المهام بتقدير عام ممتاز';
+                overallGrade = 'إنجاز المهام ممتاز';
             } else if (totalAchievedScore >= 80) {
-                overallGrade = 'إنجاز المهام بتقدير عام جيد جدا';
+                overallGrade = 'إنجاز المهام جيد جدا';
             } else if (totalAchievedScore >= 70) {
-                overallGrade = 'إنجاز المهام بتقدير عام جيد';
+                overallGrade = 'إنجاز المهام جيد';
             } else if (totalAchievedScore >= 60) {
-                overallGrade = 'إنجاز المهام بتقدير عام مقبول';
+                overallGrade = 'إنجاز المهام مقبول';
             } else {
-                overallGrade = 'إنجاز المهام بتقدير عام ضعيف';
+                overallGrade = 'إنجاز المهام ضعيف';
             }
             document.getElementById('overallGradeUnderTrial').value = overallGrade;
 
@@ -2030,6 +2336,11 @@
 
             // تفريغ جميع حقول الإدخال في تبويب الموظف تحت التجربة
             document.querySelectorAll('#underTrialTab input[type="text"]').forEach(input => {
+                input.value = '';
+            });
+
+            // تفريغ جميع حقول الإدخال في تبويب الإدارة الوسطى
+            document.querySelectorAll('#middleManagementTab input[type="text"]').forEach(input => {
                 input.value = '';
             });
 
@@ -2102,51 +2413,62 @@
             
             showEvaluationForms(); // استدعاء showEvaluationForms لتهيئة العرض الافتراضي
 
-            // إضافة مسيتم عين للأحداث لكل حقول الراديو في التبويب الأول
+            // إضافة مستمعي الأحداث لكل حقول الراديو في التبويب الأول
             document.querySelectorAll('#tab1 .evaluation-table input[type="radio"]').forEach(radio => {
                 radio.addEventListener('change', calculateAllTab1);
             });
             
-            // إضافة مسيتم عين للأحداث لحقول النسبة المحققة في التبويب الأول
+            // إضافة مستمعي الأحداث لحقول النسبة المحققة في التبويب الأول
             document.querySelectorAll('#tab1 .evaluation-table .achieved-ratio').forEach(input => {
                 input.addEventListener('input', calculateAllTab1);
                 input.addEventListener('change', calculateAllTab1);
             });
 
-            // إضافة مسيتم عين للأحداث لكل حقول الإدخال في التبويب الثاني
+            // إضافة مستمعي الأحداث لكل حقول الإدخال في التبويب الثاني
             document.querySelectorAll('#tab2 .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllTab2);
                 input.addEventListener('change', calculateAllTab2);
             });
 
-            // إضافة مسيتم عين للأحداث لحقل تحديد عدد النتائج
+            // إضافة مستمعي الأحداث لحقل تحديد عدد النتائج
             document.getElementById('numResults').addEventListener('change', generateTab3Rows);
 
-            // إضافة مسيتم عين للأحداث لحقول الإدخال في تبويب الموظف تحت التجربة
+            // إضافة مستمعي الأحداث لحقول الإدخال في تبويب الموظف تحت التجربة
             document.querySelectorAll('#underTrialTab .evaluation-table input[type="text"]').forEach(input => {
                 input.addEventListener('input', () => validateAndCalculateUnderTrialTab(input)); // استدعاء الدالة الجديدة
                 input.addEventListener('change', () => validateAndCalculateUnderTrialTab(input));
             });
             
-            // إضافة مسيتم عين للأحداث لكل حقول الراديو في تبويب الخدمات المساعدة والحرفية الأول
+            // إضافة مستمعي الأحداث لكل حقول الراديو في تبويب الخدمات المساعدة والحرفية الأول
             document.querySelectorAll('#supportServicesTab1 .evaluation-table input[type="radio"]').forEach(radio => {
                 radio.addEventListener('change', calculateAllSupportServicesTab1);
             });
             
-            // إضافة مسيتم عين للأحداث لحقول النسبة المحققة في تبويب الخدمات المساعدة والحرفية الأول
+            // إضافة مستمعي الأحداث لحقول النسبة المحققة في تبويب الخدمات المساعدة والحرفية الأول
             document.querySelectorAll('#supportServicesTab1 .evaluation-table .achieved-ratio-aux').forEach(input => {
                 input.addEventListener('input', calculateAllSupportServicesTab1);
                 input.addEventListener('change', calculateAllSupportServicesTab1);
             });
 
-            // إضافة مسيتم عين للأحداث لكل حقول الإدخال في تبويب الخدمات المساعدة والحرفية الثاني
+            // إضافة مستمعي الأحداث لكل حقول الإدخال في تبويب الخدمات المساعدة والحرفية الثاني
             document.querySelectorAll('#supportServicesTab2 .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllSupportServicesTab2);
                 input.addEventListener('change', calculateAllSupportServicesTab2);
             });
 
-            // إضافة مسيتم عين للأحداث لحقل تحديد عدد النتائج في تبويب الخدمات المساعدة والحرفية
+            // إضافة مستمعي الأحداث لحقل تحديد عدد النتائج في تبويب الخدمات المساعدة والحرفية
             document.getElementById('numResultsAux').addEventListener('change', generateSupportServicesTabRows);
+            
+            // إضافة مستمعي الأحداث لحقول الإدخال في تبويب الإدارة الوسطى
+            document.querySelectorAll('#middleManagementTab .importance-input').forEach(input => {
+                input.addEventListener('input', calculateMiddleManagement);
+                input.addEventListener('change', calculateMiddleManagement);
+            });
+            
+            document.querySelectorAll('#middleManagementTab .achieved-input').forEach(input => {
+                input.addEventListener('input', calculateMiddleManagement);
+                input.addEventListener('change', calculateMiddleManagement);
+            });
             
             // منع إدخال أحرف غير مسموح بها في حقول الأرقام
             document.querySelectorAll('.numeric-input').forEach(input => {
