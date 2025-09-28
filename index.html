@@ -1742,9 +1742,9 @@
                 totalDeservedPercentage += deserved;
             });
 
-            // **التعديل الجديد: التحقق من مجموع الأهمية النسبية (العلامة القصوى) يجب أن لا يتجاوز الحد الأقصى**
+            // **التعديل الجديد: التحقق من مجموع الأهمية النسبية (العلامة القصوى) يجب أن يكون بالضبط يساوي الحد المسموح به**
             if (evaluationType === 'middle') {
-                // للوظائف الوسطى، يجب أن يكون المجموع 20 بالضبط
+                // للوظائف الوسطى، يجب أن يكون المجموع بالضبط 20
                 if (totalMaxScoreSumTab2 !== weights.tab2MaxScoreSum) {
                     tab2Rows.forEach(row => {
                         row.querySelector('.max-score-input').style.borderColor = 'red';
@@ -1754,12 +1754,12 @@
                     hasTotalSumError = true;
                 }
             } else {
-                // للوظائف الأخرى، يجب أن لا يتجاوز المجموع الحد الأقصى
-                if (totalMaxScoreSumTab2 > weights.tab2MaxScoreSum) {
+                // للوظائف التخصصية والإدارية والمهنية المساندة، يجب أن يكون المجموع بالضبط 15
+                if (totalMaxScoreSumTab2 !== weights.tab2MaxScoreSum) {
                     tab2Rows.forEach(row => {
                         row.querySelector('.max-score-input').style.borderColor = 'red';
                     });
-                    errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن لا يتجاوز ${weights.tab2MaxScoreSum}.`;
+                    errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن يكون بالضبط ${weights.tab2MaxScoreSum}.`;
                     errorMessageDiv.style.display = 'block';
                     hasTotalSumError = true;
                 }
@@ -1769,11 +1769,7 @@
             if (hasInputError || hasTotalSumError) {
                 // إذا كان هناك خطأ في المجموع الكلي، فإنه الأولوية في الرسالة
                 if (hasTotalSumError) {
-                    if (evaluationType === 'middle') {
-                        errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن يكون بالضبط ${weights.tab2MaxScoreSum} للوظائف الوسطى.`;
-                    } else {
-                        errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن لا يتجاوز ${weights.tab2MaxScoreSum}.`;
-                    }
+                    errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن يكون بالضبط ${weights.tab2MaxScoreSum}.`;
                 } else if (hasInputError) {
                     errorMessageDiv.textContent = 'الرجاء إدخال أرقام صحيحة وغير سالبة في جميع الحقول الملونة بالأحمر.';
                 }
@@ -1854,12 +1850,12 @@
                 totalDeservedPercentage += deserved;
             });
 
-            // التحقق من مجموع الأهمية النسبية (العلامة القصوى) يجب أن لا يتجاوز الحد الأقصى
-            if (totalMaxScoreSumTab2 > weights.tab2MaxScoreSum) {
+            // **التعديل الجديد: التحقق من مجموع الأهمية النسبية (العلامة القصوى) يجب أن يكون بالضبط 10 للخدمات المساعدة والحرفية**
+            if (totalMaxScoreSumTab2 !== weights.tab2MaxScoreSum) {
                 tab2Rows.forEach(row => {
                     row.querySelector('.max-score-input-aux').style.borderColor = 'red';
                 });
-                errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن لا يتجاوز ${weights.tab2MaxScoreSum}.`;
+                errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن يكون بالضبط ${weights.tab2MaxScoreSum}.`;
                 errorMessageDiv.style.display = 'block';
                 hasTotalSumError = true;
             }
@@ -1868,7 +1864,7 @@
             if (hasInputError || hasTotalSumError) {
                 // إذا كان هناك خطأ في المجموع الكلي، فإنه الأولوية في الرسالة
                 if (hasTotalSumError) {
-                    errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن لا يتجاوز ${weights.tab2MaxScoreSum}.`;
+                    errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن يكون بالضبط ${weights.tab2MaxScoreSum}.`;
                 } else if (hasInputError) {
                     errorMessageDiv.textContent = 'الرجاء إدخال أرقام صحيحة وغير سالبة في جميع الحقول الملونة بالأحمر.';
                 }
