@@ -706,7 +706,6 @@
         // تعطيل زر الفارة الأيمن
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
-            alert('تم تعطيل زر الفارة الأيمن لأسباب أمنية!');
             return false;
         });
         
@@ -877,7 +876,7 @@
                             <th rowspan="2" style="width: 50%;">النتائج المطلوب من الموظف تحقيقها</th>
                             <th colspan="1">الأهمية النسبية (العلامة القصوى)</th>
                             <th rowspan="2">نسبة الإنجاز الفعلية (3)</th>
-                            <th rowspan="2">العلامة المستحقة (2)</th>
+                            <th rowspan="2">العلامة المستححة (2)</th>
                         </tr>
                         <tr>
                             <th>(وفق أهميتها النسبية)</th>
@@ -1768,7 +1767,7 @@
             // تعديل عناوين التبويبات الرئيسية
             if (evaluationType === 'specialized') {
                 // نموذج الوظائف التخصصية
-                document.getElementById('tab3-title').textContent = 'مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (65%)';
+                document.getElementById('tab3-title').textContent = 'مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (65%)';
                 document.getElementById('tab1-title').textContent = 'الكفايات ويخصص له ما نسبته (20%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستححة لعناصر التميز الوظيفي (15)';
                 
