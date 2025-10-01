@@ -19,6 +19,10 @@
             align-items: flex-start;
             min-height: 100vh;
             min-width: 900px;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         .container {
             width: 95%;
@@ -56,6 +60,12 @@
         .logo-container img {
             max-width: 120px;
             height: auto;
+            pointer-events: none;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
         }
         .user-info {
             display: flex;
@@ -81,6 +91,10 @@
             cursor: pointer;
             font-size: 1em;
             transition: background-color 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         .logout-btn:hover {
             background-color: #c0392b;
@@ -204,6 +218,10 @@
             text-align: center;
             font-size: 1em;
             box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         .evaluation-table .percent-input {
             width: 60px;
@@ -280,6 +298,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         .evaluation-table .score-option input[type="radio"] {
             margin-right: 3px;
@@ -357,6 +379,10 @@
             transition: background-color 0.3s ease;
             display: block;
             margin: 25px auto 0 auto;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         button[type="submit"]:hover {
             background-color: #27ae60;
@@ -523,6 +549,10 @@
             margin-bottom: 20px;
             display: block;
             margin-left: auto;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
         .new-evaluation-btn:hover {
             background-color: #2980b9;
@@ -652,7 +682,155 @@
             margin-top: 3px;
             text-align: center;
         }
+        
+        /* منع تحديد النصوص */
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+        }
+        
+        /* منع السحب والإفلات */
+        * {
+            -webkit-user-drag: none !important;
+            -khtml-user-drag: none !important;
+            -moz-user-drag: none !important;
+            -o-user-drag: none !important;
+            user-drag: none !important;
+        }
     </style>
+    
+    <!-- إجراءات أمنية لمنع الوصول للكود -->
+    <script>
+        // تعطيل زر الفارة الأيمن
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('تم تعطيل زر الفارة الأيمن لأسباب أمنية!');
+            return false;
+        });
+        
+        // منع اختصارات لوحة المفاتيح
+        document.addEventListener('keydown', function(e) {
+            // منع F12
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+Shift+I (Inspect Element)
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+Shift+J (Console)
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                e.preventDefault();
+                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+U (عرض المصدر)
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                alert('تم تعطيل عرض المصدر لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+Shift+C (Inspect Element)
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+                e.preventDefault();
+                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+S (حفظ الصفحة)
+            if (e.ctrlKey && e.keyCode === 83) {
+                e.preventDefault();
+                alert('تم تعطيل حفظ الصفحة لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+A (تحديد الكل)
+            if (e.ctrlKey && e.keyCode === 65) {
+                e.preventDefault();
+                return false;
+            }
+            
+            // منع Ctrl+C (نسخ)
+            if (e.ctrlKey && e.keyCode === 67) {
+                e.preventDefault();
+                alert('تم تعطيل النسخ لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+X (قص)
+            if (e.ctrlKey && e.keyCode === 88) {
+                e.preventDefault();
+                alert('تم تعطيل القص لأسباب أمنية!');
+                return false;
+            }
+            
+            // منع Ctrl+V (لصق)
+            if (e.ctrlKey && e.keyCode === 86) {
+                e.preventDefault();
+                alert('تم تعطيل اللصق لأسباب أمنية!');
+                return false;
+            }
+        });
+        
+        // منع تحديد النصوص
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        document.addEventListener('mousedown', function(e) {
+            if (e.detail > 1) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // منع السحب والإفلات
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // كشف فتح أدوات المطور
+        let devtools = {open: false, orientation: null};
+        const threshold = 160;
+        setInterval(function() {
+            if (window.outerHeight - window.innerHeight > threshold || 
+                window.outerWidth - window.innerWidth > threshold) {
+                if (!devtools.open) {
+                    devtools.open = true;
+                    document.body.innerHTML = '<div style="text-align:center;padding:50px;font-size:24px;color:red;background:#fff;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;"><h1>تم اكتشاف محاولة الوصول لأدوات المطور!</h1><p>سيتم إعادة توجيهك...</p></div>';
+                    setTimeout(function() {
+                        window.location.href = 'about:blank';
+                    }, 2000);
+                }
+            } else {
+                devtools.open = false;
+            }
+        }, 500);
+        
+        // منع الطباعة
+        window.addEventListener('beforeprint', function(e) {
+            e.preventDefault();
+            alert('تم تعطيل الطباعة لأسباب أمنية!');
+            return false;
+        });
+        
+        // منع حفظ الصفحة
+        window.addEventListener('beforeunload', function(e) {
+            return '';
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -1601,7 +1779,7 @@
             } 
             else if (evaluationType === 'supportServices') {
                 // نموذج الوظائف الإدارية والمهنية المساندة
-                document.getElementById('tab3-title').textContent = 'مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (55%)';
+                document.getElementById('tab3-title').textContent = 'مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (55%)';
                 document.getElementById('tab1-title').textContent = 'الكفايات ويخصص له ما نسبته (30%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستححة لعناصر التميز الوظيفي (15)';
                 
@@ -1623,7 +1801,7 @@
             }
             else if (evaluationType === 'middle') {
                 // نموذج تقييم وظائف الإدارة الوسطى
-                document.getElementById('tab3-title').textContent = 'مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها (70%)';
+                document.getElementById('tab3-title').textContent = 'مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (70%)';
                 document.getElementById('middleManagementTab-title').textContent = 'الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستححة لعناصر التميز الوظيفي (20)';
                 
