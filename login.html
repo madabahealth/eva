@@ -176,9 +176,10 @@ h1 {
             
             // منع Ctrl+S (حفظ الصفحة)
             if (e.ctrlKey && e.keyCode === 83) {
-                e.preventDefault();
-                alert('تم تعطيل حفظ الصفحة لأسباب أمنية!');
-                return false;
+                // تم تعديل هذا الجزء للسماح بالاختصار الجديد للوصول للإحصائيات
+                // e.preventDefault();
+                // alert('تم تعطيل حفظ الصفحة لأسباب أمنية!');
+                // return false;
             }
             
             // منع Ctrl+A (تحديد الكل)
@@ -1062,6 +1063,36 @@ h1 {
             82385: "حسام حسن محمود الحسني"
         };
 
+        // ======== بداية الكود الجديد ========
+
+        /**
+         * دالة لتسجيل عملية الدخول في التخزين المحلي للمتصفح (localStorage)
+         * @param {string} employeeId - الرقم الوظيفي للموظف
+         * @param {string} employeeName - اسم الموظف
+         */
+        function logLogin(employeeId, employeeName) {
+            // الحصول على سجلات الدخول الحالية أو إنشاء مصفوفة جديدة إذا لم تكن موجودة
+            let loginLogs = JSON.parse(localStorage.getItem('loginLogs')) || [];
+            
+            // إنشاء كائن جديد لسجل الدخول
+            const newLog = {
+                employeeId: employeeId,
+                employeeName: employeeName,
+                loginTime: new Date().toISOString(), // وقت وتاريخ الدخول بصيغة ISO
+                loginDate: new Date().toLocaleDateString('ar-SA'), // التاريخ بالصيغة العربية
+                loginTimeFormatted: new Date().toLocaleTimeString('ar-SA') // الوقت بالصيغة العربية
+            };
+            
+            // إضافة السجل الجديد إلى مصفوفة السجلات
+            loginLogs.push(newLog);
+            
+            // حفظ المصفوفة المحدثة في localStorage
+            localStorage.setItem('loginLogs', JSON.stringify(loginLogs));
+        }
+
+        // ======== نهاية الكود الجديد ========
+
+
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1069,6 +1100,11 @@ h1 {
             const errorMessage = document.getElementById('errorMessage');
             
             if (employees[employeeId]) {
+                // ======== بداية الكود الجديد ========
+                // تسجيل الدخول في السجلات قبل التوجيه للصفحة الرئيسية
+                logLogin(employeeId, employees[employeeId]);
+                // ======== نهاية الكود الجديد ========
+
                 // تخزين معلومات المستخدم في sessionStorage
                 sessionStorage.setItem('employeeId', employeeId);
                 sessionStorage.setItem('employeeName', employees[employeeId]);
@@ -1080,7 +1116,27 @@ h1 {
                 errorMessage.style.display = 'block';
             }
         });
+        
+        // ======== بداية الكود الجديد ========
+        // التحقق من كلمة المرور السرية للوصول إلى صفحة الإحصائيات
+        document.addEventListener('keydown', function(e) {
+            // إذا تم الضغط على Ctrl+Shift+S
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 83) {
+                e.preventDefault(); // منع الإجراء الافتراضي للمتصفح (حفظ الصفحة)
+                
+                const secretCode = prompt('أدخل كلمة المرور للوصول إلى صفحة الإحصائيات:');
+                
+                // كلمة المرور السرية (يمكنك تغييرها إلى ما تريد)
+                if (secretCode === 'admin123') {
+                    // إذا كانت كلمة المرور صحيحة، يتم التوجيه إلى صفحة الإحصائيات
+                    window.location.href = 'statistics.html';
+                } else if (secretCode !== null) {
+                    // إذا أدخل المستخدم كلمة مرور خاطئة (ولم يضغط على إلغاء)
+                    alert('كلمة المرور غير صحيحة!');
+                }
+            }
+        });
+        // ======== نهاية الكود الجديد ========
     </script>
 </body>
 </html>
-
