@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>تسجيل الدخول - نظام تقييم أداء الموظفين</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,11 +18,22 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            user-select: none;
+            /* تعديل: منع التحديد فقط خارج حقول الإدخال */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+            user-select: none;
+            /* تعديل: تحسين الأداء على iOS */
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
+        
+        /* تعديل: السماح بتحديد النص في حقول الإدخال */
+        input, textarea {
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
         .login-container {
             width: 400px;
             max-width: 90%;
@@ -32,6 +43,11 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             box-sizing: border-box;
             text-align: center;
+            /* تعديل: إضافة خصائص لتحسين التوافق مع iOS */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
         .logo {
             max-width: 110px;
@@ -80,10 +96,10 @@ h1 {
             font-size: 1.1em;
             text-align: center;
             box-sizing: border-box;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            /* تعديل: إضافة خصائص لتحسين المظهر على iOS */
+            -webkit-appearance: none;
+            appearance: none;
+            -webkit-border-radius: 6px;
         }
         .error-message {
             color: #e74c3c;
@@ -102,24 +118,17 @@ h1 {
             transition: background-color 0.3s ease;
             width: 100%;
             margin-top: 10px;
-            user-select: none;
+            /* تعديل: منع التحديد على الأزرار */
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
+            user-select: none;
         }
         .login-btn:hover {
             background-color: #2980b9;
         }
         
-        /* منع تحديد النصوص */
-        * {
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-        }
-        
-        /* منع السحب والإفلات */
+        /* منع السحب والإفلات بشكل عام */
         * {
             -webkit-user-drag: none !important;
             -khtml-user-drag: none !important;
@@ -137,7 +146,7 @@ h1 {
             return false;
         });
         
-        // منع اختصارات لوحة المفاتيح
+        // تعديل: تحسين معالجة أحداث لوحة المفاتيح لتكون متوافقة مع iOS
         document.addEventListener('keydown', function(e) {
             // منع F12
             if (e.keyCode === 123) {
@@ -174,50 +183,74 @@ h1 {
                 return false;
             }
             
-            // منع Ctrl+S (حفظ الصفحة)
-            if (e.ctrlKey && e.keyCode === 83) {
-                // تم تعديل هذا الجزء للسماح بالاختصار الجديد للوصول للإحصائيات
-                // e.preventDefault();
-                // alert('تم تعطيل حفظ الصفحة لأسباب أمنية!');
-                // return false;
-            }
-            
-            // منع Ctrl+A (تحديد الكل)
-            if (e.ctrlKey && e.keyCode === 65) {
+            // منع Ctrl+A (تحديد الكل) - فقط خارج حقول الإدخال
+            if (e.ctrlKey && e.keyCode === 65 && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
                 e.preventDefault();
                 return false;
             }
             
-            // منع Ctrl+C (نسخ)
-            if (e.ctrlKey && e.keyCode === 67) {
+            // منع Ctrl+C (نسخ) - فقط خارج حقول الإدخال
+            if (e.ctrlKey && e.keyCode === 67 && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
                 e.preventDefault();
                 alert('تم تعطيل النسخ لأسباب أمنية!');
                 return false;
             }
             
-            // منع Ctrl+X (قص)
-            if (e.ctrlKey && e.keyCode === 88) {
+            // منع Ctrl+X (قص) - فقط خارج حقول الإدخال
+            if (e.ctrlKey && e.keyCode === 88 && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
                 e.preventDefault();
                 alert('تم تعطيل القص لأسباب أمنية!');
                 return false;
             }
             
-            // منع Ctrl+V (لصق)
-            if (e.ctrlKey && e.keyCode === 86) {
+            // منع Ctrl+V (لصق) - فقط خارج حقول الإدخال
+            if (e.ctrlKey && e.keyCode === 86 && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
                 e.preventDefault();
                 alert('تم تعطيل اللصق لأسباب أمنية!');
                 return false;
             }
+            
+            // التحقق من كلمة المرور السرية للوصول إلى صفحة الإحصائيات
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 83) {
+                e.preventDefault();
+                const secretCode = prompt('أدخل كلمة المرور للوصول إلى صفحة الإحصائيات:');
+                if (secretCode === 'admin123') {
+                    window.location.href = 'statistics.html';
+                } else if (secretCode !== null) {
+                    alert('كلمة المرور غير صحيحة!');
+                }
+            }
         });
         
-        // منع تحديد النصوص
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
+        // تعديل: إضافة معالج أحداث اللمس لتحسين التوافق مع iOS
+        document.addEventListener('touchstart', function(e) {
+            // السماح باللمس الطبيعي في حقول الإدخال والأزرار
+            if (['INPUT', 'TEXTAREA', 'BUTTON', 'A'].includes(e.target.tagName)) {
+                return;
+            }
+            
+            // منع النقر المتعدد (zoom) خارج العناصر التفاعلية
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, {passive: false});
         
+        // تعديل: تحسين معالج النقرات
         document.addEventListener('mousedown', function(e) {
+            // السماح بالنقرات الطبيعية في حقول الإدخال والأزرار
+            if (['INPUT', 'TEXTAREA', 'BUTTON', 'A'].includes(e.target.tagName)) {
+                return;
+            }
+            
             if (e.detail > 1) {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // منع تحديد النصوص بشكل عام (باستثناء حقول الإدخال التي تم تعديلها في CSS)
+        document.addEventListener('selectstart', function(e) {
+            if (!['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
                 e.preventDefault();
                 return false;
             }
@@ -229,20 +262,21 @@ h1 {
             return false;
         });
         
-        // كشف فتح أدوات المطور
+        // تعديل: تحسين كشف فتح أدوات المطور ليكون أكثر موثوقية وأقل تأثيراً على iOS
         let devtools = {open: false, orientation: null};
         const threshold = 160;
         setInterval(function() {
-            if (window.outerHeight - window.innerHeight > threshold || 
-                window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    document.body.innerHTML = '<div style="text-align:center;padding:50px;font-size:24px;color:red;background:#fff;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;"><h1>تم اكتشاف محاولة الوصول لأدوات المطور!</h1><p>سيتم إعادة توجيهك...</p></div>';
-                    setTimeout(function() {
-                        window.location.href = 'about:blank';
-                    }, 2000);
-                }
-            } else {
+            // تحقق أكثر دقة لتجنب الإطلاق الخاطئ على iOS
+            const isDevtoolsOpen = (window.outerHeight - window.innerHeight > threshold) || 
+                                   (window.outerWidth - window.innerWidth > threshold);
+
+            if (isDevtoolsOpen && !devtools.open) {
+                devtools.open = true;
+                document.body.innerHTML = '<div style="text-align:center;padding:50px;font-size:24px;color:red;background:#fff;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;"><h1>تم اكتشاف محاولة الوصول لأدوات المطور!</h1><p>سيتم إعادة توجيهك...</p></div>';
+                setTimeout(function() {
+                    window.location.href = 'about:blank';
+                }, 2000);
+            } else if (!isDevtoolsOpen) {
                 devtools.open = false;
             }
         }, 500);
@@ -1063,8 +1097,6 @@ h1 {
             82385: "حسام حسن محمود الحسني"
         };
 
-        // ======== بداية الكود الجديد ========
-
         /**
          * دالة لتسجيل عملية الدخول في التخزين المحلي للمتصفح (localStorage)
          * @param {string} employeeId - الرقم الوظيفي للموظف
@@ -1090,9 +1122,7 @@ h1 {
             localStorage.setItem('loginLogs', JSON.stringify(loginLogs));
         }
 
-        // ======== نهاية الكود الجديد ========
-
-
+        // تعديل: تحسين معالج إرسال النموذج لتحسين التوافق مع iOS
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1100,43 +1130,23 @@ h1 {
             const errorMessage = document.getElementById('errorMessage');
             
             if (employees[employeeId]) {
-                // ======== بداية الكود الجديد ========
                 // تسجيل الدخول في السجلات قبل التوجيه للصفحة الرئيسية
                 logLogin(employeeId, employees[employeeId]);
-                // ======== نهاية الكود الجديد ========
 
                 // تخزين معلومات المستخدم في sessionStorage
                 sessionStorage.setItem('employeeId', employeeId);
                 sessionStorage.setItem('employeeName', employees[employeeId]);
                 
-                // توجيه المستخدم إلى الصفحة الرئيسية
-                window.location.href = 'index.html';
+                // تعديل: إضافة تأخير بسيط قبل التوجيه لتحسين التوافق مع iOS
+                setTimeout(() => {
+                    // توجيه المستخدم إلى الصفحة الرئيسية
+                    window.location.href = 'index.html';
+                }, 100);
             } else {
                 // عرض رسالة خطأ
                 errorMessage.style.display = 'block';
             }
         });
-        
-        // ======== بداية الكود الجديد ========
-        // التحقق من كلمة المرور السرية للوصول إلى صفحة الإحصائيات
-        document.addEventListener('keydown', function(e) {
-            // إذا تم الضغط على Ctrl+Shift+S
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 83) {
-                e.preventDefault(); // منع الإجراء الافتراضي للمتصفح (حفظ الصفحة)
-                
-                const secretCode = prompt('أدخل كلمة المرور للوصول إلى صفحة الإحصائيات:');
-                
-                // كلمة المرور السرية (يمكنك تغييرها إلى ما تريد)
-                if (secretCode === 'admin123') {
-                    // إذا كانت كلمة المرور صحيحة، يتم التوجيه إلى صفحة الإحصائيات
-                    window.location.href = 'statistics.html';
-                } else if (secretCode !== null) {
-                    // إذا أدخل المستخدم كلمة مرور خاطئة (ولم يضغط على إلغاء)
-                    alert('كلمة المرور غير صحيحة!');
-                }
-            }
-        });
-        // ======== نهاية الكود الجديد ========
     </script>
 </body>
 </html>
