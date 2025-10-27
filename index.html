@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            min-width: 900px;
+            /* تعديل: إزالة min-width الثابت لجعل الصفحة متجاوبة */
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -35,6 +35,34 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             box-sizing: border-box;
         }
+        /* تعديل: إضافة media queries للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            body {
+                align-items: center; /* توسيط عمودي أفضل على الموبايل */
+            }
+            .container {
+                width: 98%; /* استخدام معظم عرض الشاشة */
+                margin: 10px auto;
+                padding: 20px; /* تقليل الحشو */
+                border-radius: 8px;
+            }
+            .header-title-main { font-size: 1.5em; }
+            .header-title-sub { font-size: 1.2em; }
+            .header-title-page { font-size: 1.1em; }
+            .selection-section label { font-size: 1.1em; }
+            .evaluation-table {
+                font-size: 0.9em;
+            }
+            .evaluation-table th, .evaluation-table td {
+                padding: 8px 5px; /* تقليل الحشو في الجداول */
+            }
+            /* تعديل: جعل الجداول قابلة للتمرير الأفقي على الشاشات الصغيرة */
+            .tab-content {
+                overflow-x: auto; /* تفعيل التمرير الأفقي */
+                -webkit-overflow-scrolling: touch; /* تحسين التمرير على iOS */
+            }
+        }
+
         .header {
             display: flex;
             align-items: center;
@@ -218,10 +246,10 @@
             text-align: center;
             font-size: 1em;
             box-sizing: border-box;
-            user-select: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
+            user-select: text; /* تعديل: السماح باختيار النص في حقول الإدخال */
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
         }
         .evaluation-table .percent-input {
             width: 60px;
@@ -683,7 +711,8 @@
             text-align: center;
         }
         
-        /* منع تحديد النصوص */
+        /* تعديل: إزالة منع تحديد النصوص بشكل عام لتحسين تجربة المستخدم */
+        /*
         * {
             -webkit-user-select: none !important;
             -moz-user-select: none !important;
@@ -691,7 +720,6 @@
             user-select: none !important;
         }
         
-        /* منع السحب والإفلات */
         * {
             -webkit-user-drag: none !important;
             -khtml-user-drag: none !important;
@@ -699,9 +727,10 @@
             -o-user-drag: none !important;
             user-drag: none !important;
         }
+        */
     </style>
     
-    <!-- إجراءات أمنية لمنع الوصول للكود -->
+    <!-- تعديل: تقليل الإجراءات الأمنية العدوانية التي قد تسبب مشاكل على iOS -->
     <script>
         // تعطيل زر الفارة الأيمن
         document.addEventListener('contextmenu', function(e) {
@@ -714,78 +743,45 @@
             // منع F12
             if (e.keyCode === 123) {
                 e.preventDefault();
-                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
                 return false;
             }
             
             // منع Ctrl+Shift+I (Inspect Element)
             if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
                 e.preventDefault();
-                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
                 return false;
             }
             
             // منع Ctrl+Shift+J (Console)
             if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
                 e.preventDefault();
-                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
                 return false;
             }
             
             // منع Ctrl+U (عرض المصدر)
             if (e.ctrlKey && e.keyCode === 85) {
                 e.preventDefault();
-                alert('تم تعطيل عرض المصدر لأسباب أمنية!');
                 return false;
             }
             
             // منع Ctrl+Shift+C (Inspect Element)
             if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
                 e.preventDefault();
-                alert('تم تعطيل أدوات المطور لأسباب أمنية!');
                 return false;
             }
             
             // منع Ctrl+S (حفظ الصفحة)
             if (e.ctrlKey && e.keyCode === 83) {
                 e.preventDefault();
-                alert('تم تعطيل حفظ الصفحة لأسباب أمنية!');
-                return false;
-            }
-            
-            // منع Ctrl+A (تحديد الكل)
-            if (e.ctrlKey && e.keyCode === 65) {
-                e.preventDefault();
-                return false;
-            }
-            
-            // منع Ctrl+C (نسخ)
-            if (e.ctrlKey && e.keyCode === 67) {
-                e.preventDefault();
-                alert('تم تعطيل النسخ لأسباب أمنية!');
-                return false;
-            }
-            
-            // منع Ctrl+X (قص)
-            if (e.ctrlKey && e.keyCode === 88) {
-                e.preventDefault();
-                alert('تم تعطيل القص لأسباب أمنية!');
-                return false;
-            }
-            
-            // منع Ctrl+V (لصق)
-            if (e.ctrlKey && e.keyCode === 86) {
-                e.preventDefault();
-                alert('تم تعطيل اللصق لأسباب أمنية!');
                 return false;
             }
         });
         
-        // منع تحديد النصوص
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-            return false;
-        });
+        // تعديل: إزالة منع تحديد النصوص لتحسين التوافقية
+        // document.addEventListener('selectstart', function(e) {
+        //     e.preventDefault();
+        //     return false;
+        // });
         
         document.addEventListener('mousedown', function(e) {
             if (e.detail > 1) {
@@ -800,7 +796,8 @@
             return false;
         });
         
-        // كشف فتح أدوات المطور
+        // تعديل: إزالة كشف أدوات المطور لأنه قد يسبب مشاكل في الأداء
+        /*
         let devtools = {open: false, orientation: null};
         const threshold = 160;
         setInterval(function() {
@@ -817,11 +814,11 @@
                 devtools.open = false;
             }
         }, 500);
+        */
         
         // منع الطباعة
         window.addEventListener('beforeprint', function(e) {
             e.preventDefault();
-            alert('تم تعطيل الطباعة لأسباب أمنية!');
             return false;
         });
         
@@ -863,7 +860,7 @@
             <button class="new-evaluation-btn" onclick="resetForm()">تقييم جديد</button>
             
             <div id="tab3" class="tab-content">
-                <h3 id="tab3-title">مجموع العلامة المستحقة للنتائج المطلوب من الموظف تحقيقها</h3>
+                <h3 id="tab3-title">مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها</h3>
                 <p>الرجاء إدخال البيانات التالية:</p>
                 <div class="results-count-section">
                     <label for="numResults">تحديد عدد النتائج المطلوب من الموظف تحقيقها (2-5):</label>
@@ -1489,7 +1486,7 @@
                 radio.addEventListener('change', calculateAllTab1);
             });
             
-            // إضافة مستمعي الأحداثات لحقول النسبة المحققة في التبويب الأول
+            // إضافة مستمعي الأحداث لحقول النسبة المحققة في التبويب الأول
             document.querySelectorAll('#tab1 .evaluation-table .achieved-ratio').forEach(input => {
                 input.addEventListener('input', function() { validateAndCorrectCompetencyInput(this); });
                 input.addEventListener('change', function() { validateAndCorrectCompetencyInput(this); });
@@ -2814,5 +2811,4 @@
         }
     </script>
 </body>
-
 </html>
