@@ -18,7 +18,6 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            /* تعديل: إزالة min-width الثابت لجعل الصفحة متجاوبة */
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -35,15 +34,14 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             box-sizing: border-box;
         }
-        /* تعديل: إضافة media queries للشاشات الصغيرة */
         @media (max-width: 768px) {
             body {
-                align-items: center; /* توسيط عمودي أفضل على الموبايل */
+                align-items: center;
             }
             .container {
-                width: 98%; /* استخدام معظم عرض الشاشة */
+                width: 98%;
                 margin: 10px auto;
-                padding: 20px; /* تقليل الحشو */
+                padding: 20px;
                 border-radius: 8px;
             }
             .header-title-main { font-size: 1.5em; }
@@ -54,15 +52,13 @@
                 font-size: 0.9em;
             }
             .evaluation-table th, .evaluation-table td {
-                padding: 8px 5px; /* تقليل الحشو في الجداول */
+                padding: 8px 5px;
             }
-            /* تعديل: جعل الجداول قابلة للتمرير الأفقي على الشاشات الصغيرة */
             .tab-content {
-                overflow-x: auto; /* تفعيل التمرير الأفقي */
-                -webkit-overflow-scrolling: touch; /* تحسين التمرير على iOS */
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
         }
-
         .header {
             display: flex;
             align-items: center;
@@ -246,7 +242,7 @@
             text-align: center;
             font-size: 1em;
             box-sizing: border-box;
-            user-select: text; /* تعديل: السماح باختيار النص في حقول الإدخال */
+            user-select: text;
             -webkit-user-select: text;
             -moz-user-select: text;
             -ms-user-select: text;
@@ -586,22 +582,18 @@
             background-color: #2980b9;
         }
         
-        /* فئة للحقول الرقمية */
         .numeric-input {
             direction: ltr;
         }
         
-        /* تعديل لتوسيط النص في حقول الإدخال */
         .centered-input {
             text-align: center !important;
         }
         
-        /* إضافة نمط للخلايا المطلوب إدخال قيم فيها */
         .required-input {
             border: 2px solid red !important;
         }
         
-        /* نمط للجدول الجديد في نموذج الإدارة الوسطى */
         .middle-management-table {
             width: 100%;
             border-collapse: collapse;
@@ -651,7 +643,6 @@
             background-color: #f5f5f5;
         }
         
-        /* تنسيق خاص لحقول المجاميع في جدول الإدارة الوسطى */
         .middle-management-table .total-row td {
             background-color: #e6f2f9;
             font-weight: bold;
@@ -697,12 +688,10 @@
             font-size: 1.1em;
         }
         
-        /* إضافة نمط للنص الباهت في حقل النسبة المحققة من الكفاية في نموذج الإدارة الوسطى */
         .middle-management-table .achieved-input {
             color: rgba(0, 0, 0, 0.7);
         }
         
-        /* إضافة نمط للرسائل التوضيحية */
         .input-hint {
             font-size: 0.8em;
             color: #888;
@@ -710,78 +699,45 @@
             margin-top: 3px;
             text-align: center;
         }
-        
-        /* تعديل: إزالة منع تحديد النصوص بشكل عام لتحسين تجربة المستخدم */
-        /*
-        * {
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-        }
-        
-        * {
-            -webkit-user-drag: none !important;
-            -khtml-user-drag: none !important;
-            -moz-user-drag: none !important;
-            -o-user-drag: none !important;
-            user-drag: none !important;
-        }
-        */
     </style>
     
-    <!-- تعديل: تقليل الإجراءات الأمنية العدوانية التي قد تسبب مشاكل على iOS -->
     <script>
-        // تعطيل زر الفارة الأيمن
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
             return false;
         });
         
-        // منع اختصارات لوحة المفاتيح
         document.addEventListener('keydown', function(e) {
-            // منع F12
             if (e.keyCode === 123) {
                 e.preventDefault();
                 return false;
             }
             
-            // منع Ctrl+Shift+I (Inspect Element)
             if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
                 e.preventDefault();
                 return false;
             }
             
-            // منع Ctrl+Shift+J (Console)
             if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
                 e.preventDefault();
                 return false;
             }
             
-            // منع Ctrl+U (عرض المصدر)
             if (e.ctrlKey && e.keyCode === 85) {
                 e.preventDefault();
                 return false;
             }
             
-            // منع Ctrl+Shift+C (Inspect Element)
             if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
                 e.preventDefault();
                 return false;
             }
             
-            // منع Ctrl+S (حفظ الصفحة)
             if (e.ctrlKey && e.keyCode === 83) {
                 e.preventDefault();
                 return false;
             }
         });
-        
-        // تعديل: إزالة منع تحديد النصوص لتحسين التوافقية
-        // document.addEventListener('selectstart', function(e) {
-        //     e.preventDefault();
-        //     return false;
-        // });
         
         document.addEventListener('mousedown', function(e) {
             if (e.detail > 1) {
@@ -790,39 +746,16 @@
             }
         });
         
-        // منع السحب والإفلات
         document.addEventListener('dragstart', function(e) {
             e.preventDefault();
             return false;
         });
         
-        // تعديل: إزالة كشف أدوات المطور لأنه قد يسبب مشاكل في الأداء
-        /*
-        let devtools = {open: false, orientation: null};
-        const threshold = 160;
-        setInterval(function() {
-            if (window.outerHeight - window.innerHeight > threshold || 
-                window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    document.body.innerHTML = '<div style="text-align:center;padding:50px;font-size:24px;color:red;background:#fff;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;"><h1>تم اكتشاف محاولة الوصول لأدوات المطور!</h1><p>سيتم إعادة توجيهك...</p></div>';
-                    setTimeout(function() {
-                        window.location.href = 'about:blank';
-                    }, 2000);
-                }
-            } else {
-                devtools.open = false;
-            }
-        }, 500);
-        */
-        
-        // منع الطباعة
         window.addEventListener('beforeprint', function(e) {
             e.preventDefault();
             return false;
         });
         
-        // منع حفظ الصفحة
         window.addEventListener('beforeunload', function(e) {
             return '';
         });
@@ -885,7 +818,6 @@
                 <div id="tab3-error-message" class="error-message" style="display: none;"></div>
             </div>
 
-            <!-- نموذج تقييم وظائف الإدارة الوسطى - الجدول الجديد للكفايات -->
             <div id="middleManagementTab" class="tab-content" style="display: none;">
                 <h3 id="middleManagementTab-title">الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء</h3>
                 <p>الرجاء إدخال البيانات الخاصة بالتقييم:</p>
@@ -929,7 +861,6 @@
                             <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="95" placeholder="0-95" onchange="calculateMiddleManagement()"></td>
                             <td><input type="text" class="score-input numeric-input" readonly></td>
                         </tr>
-                        <!-- الصفان الإضافيان -->
                         <tr data-competency="teamwork">
                             <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
                             <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
@@ -1131,7 +1062,6 @@
                 </div>
             </div>
 
-            <!-- نموذج تقييم وظائف الخدمات المساعدة والحرفية -->
             <div id="supportServicesTab" class="tab-content">
                 <h3 id="supportServicesTab-title">مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها</h3>
                 <p>الرجاء إدخال البيانات التالية:</p>
@@ -1466,107 +1396,83 @@
         </div>
     </div>
     <script>
-        // التحقق من تسجيل الدخول عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             checkAuthentication();
             
-            // التحقق من وجود قيمة محفوظة في sessionStorage
             const savedEvaluationType = sessionStorage.getItem('selectedEvaluationType');
             if (savedEvaluationType) {
-                // تعيين القيمة المحفوظة للحقل
                 document.getElementById('evaluationType').value = savedEvaluationType;
-                // إزالة القيمة من sessionStorage
                 sessionStorage.removeItem('selectedEvaluationType');
             }
             
-            showEvaluationForms(); // استدعاء showEvaluationForms لتهيئة العرض الافتراضي
+            showEvaluationForms();
 
-            // إضافة مستمعي الأحداث لكل حقول الراديو في التبويب الأول
             document.querySelectorAll('#tab1 .evaluation-table input[type="radio"]').forEach(radio => {
                 radio.addEventListener('change', calculateAllTab1);
             });
             
-            // إضافة مستمعي الأحداث لحقول النسبة المحققة في التبويب الأول
             document.querySelectorAll('#tab1 .evaluation-table .achieved-ratio').forEach(input => {
                 input.addEventListener('input', function() { validateAndCorrectCompetencyInput(this); });
                 input.addEventListener('change', function() { validateAndCorrectCompetencyInput(this); });
             });
 
-            // إضافة مستمعي الأحداث لكل حقول الإدخال في التبويب الثاني
             document.querySelectorAll('#tab2 .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllTab2);
                 input.addEventListener('change', calculateAllTab2);
             });
 
-            // إضافة مستمعي الأحداث لحقل تحديد عدد النتائج
             document.getElementById('numResults').addEventListener('change', generateTab3Rows);
 
-            // إضافة مستمعي الأحداث لحقول الإدخال في تبويب الموظف تحت التجربة
             document.querySelectorAll('#underTrialTab .evaluation-table input[type="text"]').forEach(input => {
-                input.addEventListener('input', () => validateAndCalculateUnderTrialTab(input)); // استدعاء الدالة الجديدة
+                input.addEventListener('input', () => validateAndCalculateUnderTrialTab(input));
                 input.addEventListener('change', () => validateAndCalculateUnderTrialTab(input));
             });
             
-            // إضافة مستمعي الأحداث لكل حقول الراديو في تبويب الخدمات المساعدة والحرفية الأول
             document.querySelectorAll('#supportServicesTab1 .evaluation-table input[type="radio"]').forEach(radio => {
                 radio.addEventListener('change', calculateAllSupportServicesTab1);
             });
             
-            // إضافة مستمعي الأحداث لحقول النسبة المحققة في تبويب الخدمات المساعدة والحرفية الأول
             document.querySelectorAll('#supportServicesTab1 .evaluation-table .achieved-ratio-aux').forEach(input => {
                 input.addEventListener('input', function() { validateAndCorrectCompetencyInput(this); });
                 input.addEventListener('change', function() { validateAndCorrectCompetencyInput(this); });
             });
 
-            // إضافة مستمعي الأحداث لكل حقول الإدخال في تبويب الخدمات المساعدة والحرفية الثاني
             document.querySelectorAll('#supportServicesTab2 .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllSupportServicesTab2);
                 input.addEventListener('change', calculateAllSupportServicesTab2);
             });
 
-            // إضافة مستمعي الأحداث لحقل تحديد عدد النتائج في تبويب الخدمات المساعدة والحرفية
             document.getElementById('numResultsAux').addEventListener('change', generateSupportServicesTabRows);
             
-            // إضافة مستمعي الأحداث لحقول الإدخال في تبويب الإدارة الوسطى
             document.querySelectorAll('#middleManagementTab .importance-input').forEach(input => {
                 input.addEventListener('input', calculateMiddleManagement);
                 input.addEventListener('change', calculateMiddleManagement);
             });
             
             document.querySelectorAll('#middleManagementTab .achieved-input').forEach(input => {
-                // استدعاء دالة التحقق والتصحيح الجديدة
                 input.addEventListener('input', function() { validateAndCorrectCompetencyInput(this); });
                 input.addEventListener('change', function() { validateAndCorrectCompetencyInput(this); });
             });
             
-            // منع إدخال أحرف غير مسموح بها في حقول الأرقام
             document.querySelectorAll('.numeric-input').forEach(input => {
                 input.addEventListener('input', function(e) {
                     validateNumericInput(this);
                 });
                 
                 input.addEventListener('keydown', function(e) {
-                    // السماح بمفاتيح التحكم (Backspace, Delete, Tab, etc.)
                     if ([8, 9, 13, 27, 46].indexOf(e.keyCode) !== -1 ||
-                        // السماح بمفاتيح الأسهم
                         [37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
-                        // السماح بـ Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
                         (e.ctrlKey && [65, 67, 86, 88].indexOf(e.keyCode) !== -1)) {
                         return;
                     }
                     
-                    // منع أي حرف ليس رقمًا أو نقطة أو سالب
                     if (!/^[0-9.-]$/.test(e.key)) {
                         e.preventDefault();
                     }
                 });
                 
-                // منع اللصق غير الصالح
                 input.addEventListener('paste', function(e) {
-                    // الحصول على البيانات الملصوقة
                     const pastedData = (e.clipboardData || window.clipboardData).getData('text');
-                    
-                    // التحقق من أن البيانات الملصوقة تحتوي على أرقام فقط
                     if (!/^[0-9.-]*$/.test(pastedData)) {
                         e.preventDefault();
                     }
@@ -1574,32 +1480,24 @@
             });
         });
         
-        // دالة للتحقق من المصادقة
         function checkAuthentication() {
             const employeeId = sessionStorage.getItem('employeeId');
             const employeeName = sessionStorage.getItem('employeeName');
             
             if (!employeeId || !employeeName) {
-                // إذا لم يكن المستخدم مسجل الدخول، توجيهه إلى صفحة تسجيل الدخول
                 window.location.href = 'login.html';
                 return;
             }
             
-            // عرض اسم المستخدم في الصفحة
             document.getElementById('userName').textContent = 'مرحباً بك: ' + employeeName;
         }
         
-        // دالة تسجيل الخروج
         function logout() {
-            // مسح بيانات المستخدم من sessionStorage
             sessionStorage.removeItem('employeeId');
             sessionStorage.removeItem('employeeName');
-            
-            // توجيه المستخدم إلى صفحة تسجيل الدخول
             window.location.href = 'login.html';
         }
         
-        // دالة مساعدة لجعل قيمة الحقل فارغة إذا كانت 0 أو NaN أو للتقريب
         function formatOutputValue(value, decimalPlaces = 2) {
             if (isNaN(value) || value === null) {
                 return '';
@@ -1610,48 +1508,42 @@
             return value.toFixed(decimalPlaces);
         }
 
-        // دالة لتحديد النسب المئوية النهائية بناءً على نوع التقييم
         function getEvaluationWeights() {
             const evaluationType = document.getElementById('evaluationType').value;
             let weights = {
-                tab1Weight: 0.20, // 20% for Specialized (default)
-                tab3MaxScoreSum: 65, // 65% for Specialized (default)
-                tab2MaxScoreSum: 15, // 15% for Specialized (default)
-                tab1Divisor: 20 // 20 for Specialized (default)
+                tab1Weight: 0.20,
+                tab3MaxScoreSum: 65,
+                tab2MaxScoreSum: 15,
+                tab1Divisor: 20
             };
 
             if (evaluationType === 'supportServices') {
-                weights.tab1Weight = 0.30; // 30% for Support Services
-                weights.tab3MaxScoreSum = 55; // 55% for Support Services
-                weights.tab2MaxScoreSum = 15; // 15% for Support Services
-                weights.tab1Divisor = 20; // 20 for Support Services
+                weights.tab1Weight = 0.30;
+                weights.tab3MaxScoreSum = 55;
+                weights.tab2MaxScoreSum = 15;
+                weights.tab1Divisor = 20; // تصحيح الخطأ هنا
             } else if (evaluationType === 'middle') {
-                weights.tab1Weight = 0.10; // 10% for Middle Management
-                weights.tab3MaxScoreSum = 70; // 70% for Middle
-                weights.tab2MaxScoreSum = 20; // 20% for Middle
-                weights.tab1Divisor = 10; // 10 for Middle
+                weights.tab1Weight = 0.10;
+                weights.tab3MaxScoreSum = 70;
+                weights.tab2MaxScoreSum = 20;
+                weights.tab1Divisor = 10; // تصحيح الخطأ هنا
             } else if (evaluationType === 'auxiliaryServices') {
-                weights.tab1Weight = 0.60; // 60% for Auxiliary Services
-                weights.tab3MaxScoreSum = 30; // 30% for Auxiliary Services
-                weights.tab2MaxScoreSum = 10; // 10% for Auxiliary Services
-                weights.tab1Divisor = 20; // 20 for Auxiliary Services
+                weights.tab1Weight = 0.60;
+                weights.tab3MaxScoreSum = 30;
+                weights.tab2MaxScoreSum = 10;
+                weights.tab1Divisor = 20; // تصحيح الخطأ هنا
             }
             return weights;
         }
 
-        // متغير لتتبع ما إذا كانت صفوف tab3 قد يتم  إنشاؤها بالفعل
         let tab3RowsGenerated = false;
         let supportServicesTabRowsGenerated = false;
 
-        // دالة جديدة للتعامل مع تغيير نوع التقييم
         function handleEvaluationTypeChange() {
             const evaluationType = document.getElementById('evaluationType').value;
             
-            // إذا يتم  اختيار نوع تقييم، قم بإعادة تحميل الصفحة
             if (evaluationType !== "") {
-                // حفظ القيمة المختارة في sessionStorage
                 sessionStorage.setItem('selectedEvaluationType', evaluationType);
-                // إعادة تحميل الصفحة
                 location.reload();
             }
         }
@@ -1661,7 +1553,6 @@
             const evaluationFormsDiv = document.getElementById('evaluationForms');
             const underTrialTabContent = document.getElementById('underTrialTab');
 
-            // إخفاء جميع التبويبات والمحتويات أولاً
             evaluationFormsDiv.style.display = 'none';
             underTrialTabContent.style.display = 'none';
             document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
@@ -1669,11 +1560,9 @@
             if (evaluationType) {
                 evaluationFormsDiv.style.display = 'block';
 
-                // تحديث العناوين بناءً على نوع التقييم
                 updateTitles(evaluationType);
 
                 if (evaluationType === 'underTrial') {
-                    // إظهار تبويب الموظف تحت التجربة فقط
                     document.querySelectorAll('.tab-content').forEach(tab => {
                         if (tab.id === 'underTrialTab') {
                             tab.style.display = 'block';
@@ -1681,10 +1570,8 @@
                             tab.style.display = 'none';
                         }
                     });
-                    // استدعاء دالة التحقق والحساب للموظف تحت التجربة
                     calculateUnderTrialTab();
                 } else if (evaluationType === 'auxiliaryServices') {
-                    // إظهار تبويبات وظائف الخدمات المساعدة والحرفية
                     document.querySelectorAll('.tab-content').forEach(tab => {
                         if (tab.id.startsWith('supportServicesTab')) {
                             tab.style.display = 'block';
@@ -1694,15 +1581,14 @@
                     });
 
                     if (!supportServicesTabRowsGenerated) {
-                        generateSupportServicesTabRows(); // إنشاء الصفوف الافتراضية
+                        generateSupportServicesTabRows();
                         supportServicesTabRowsGenerated = true;
                     }
                     calculateAllSupportServicesTab();
                     calculateAllSupportServicesTab1();
                     calculateAllSupportServicesTab2();
-                    updateSupportServicesTab4Summary(); // تحديث التبويب الرابع بعد حسابات كل التبويبات الأخرى
+                    updateSupportServicesTab4Summary();
                 } else if (evaluationType === 'middle') {
-                    // إظهار التبويبات الخاصة بنموذج تقييم وظائف الإدارة الوسطى
                     document.querySelectorAll('.tab-content').forEach(tab => {
                         if (tab.id === 'tab3' || tab.id === 'tab2' || tab.id === 'tab4' || tab.id === 'middleManagementTab') {
                             tab.style.display = 'block';
@@ -1712,15 +1598,14 @@
                     });
 
                     if (!tab3RowsGenerated) {
-                        generateTab3Rows(); // إنشاء الصفوف الافتراضية
+                        generateTab3Rows();
                         tab3RowsGenerated = true;
                     }
                     calculateAllTab3();
-                    calculateMiddleManagement(); // حساب الجدول الجديد للإدارة الوسطى
+                    calculateMiddleManagement();
                     calculateAllTab2();
-                    updateTab4Summary(); // تحديث التبويب الرابع بعد حسابات كل التبويبات الأخرى
+                    updateTab4Summary();
                 } else if (evaluationType === 'supportServices') {
-                    // إظهار التبويبات الخاصة بنموذج الوظائف الإدارية والمهنية المساندة
                     document.querySelectorAll('.tab-content').forEach(tab => {
                         if (tab.id === 'tab1' || tab.id === 'tab2' || tab.id === 'tab3' || tab.id === 'tab4') {
                             tab.style.display = 'block';
@@ -1730,15 +1615,14 @@
                     });
 
                     if (!tab3RowsGenerated) {
-                        generateTab3Rows(); // إنشاء الصفوف الافتراضية
+                        generateTab3Rows();
                         tab3RowsGenerated = true;
                     }
                     calculateAllTab3();
                     calculateAllTab1();
                     calculateAllTab2();
-                    updateTab4Summary(); // تحديث التبويب الرابع بعد حسابات كل التبويبات الأخرى
+                    updateTab4Summary();
                 } else if (evaluationType === 'specialized') {
-                    // إظهار التبويبات الخاصة بنموذج الوظائف التخصصية
                     document.querySelectorAll('.tab-content').forEach(tab => {
                         if (tab.id === 'tab1' || tab.id === 'tab2' || tab.id === 'tab3' || tab.id === 'tab4') {
                             tab.style.display = 'block';
@@ -1748,72 +1632,60 @@
                     });
 
                     if (!tab3RowsGenerated) {
-                        generateTab3Rows(); // إنشاء الصفوف الافتراضية
+                        generateTab3Rows();
                         tab3RowsGenerated = true;
                     }
                     calculateAllTab3();
                     calculateAllTab1();
                     calculateAllTab2();
-                    updateTab4Summary(); // تحديث التبويب الرابع بعد حسابات كل التبويبات الأخرى
+                    updateTab4Summary();
                 }
             }
         }
 
-        // دالة لتحديث العناوين بناءً على نوع التقييم
         function updateTitles(evaluationType) {
-            // تعديل عناوين التبويبات الرئيسية
             if (evaluationType === 'specialized') {
-                // نموذج الوظائف التخصصية
                 document.getElementById('tab3-title').textContent = 'مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (65%)';
                 document.getElementById('tab1-title').textContent = 'الكفايات ويخصص له ما نسبته (20%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستححة لعناصر التميز الوظيفي (15)';
                 
-                // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-tab3-title').textContent = 'أ- مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (65%)';
                 document.getElementById('summary-tab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (20%) من تقييم الأداء';
                 document.getElementById('summary-tab2-title').textContent = 'ج- مجموع النسبة المستححة لعناصر التميز الوظيفي (15)';
             } 
             else if (evaluationType === 'supportServices') {
-                // نموذج الوظائف الإدارية والمهنية المساندة
                 document.getElementById('tab3-title').textContent = 'مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (55%)';
                 document.getElementById('tab1-title').textContent = 'الكفايات ويخصص له ما نسبته (30%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستححة لعناصر التميز الوظيفي (15)';
                 
-                // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-tab3-title').textContent = 'أ- مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (55%)';
                 document.getElementById('summary-tab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (30%) من تقييم الأداء';
                 document.getElementById('summary-tab2-title').textContent = 'ج- مجموع النسبة المستححة لعناصر التميز الوظيفي (15)';
             }
             else if (evaluationType === 'auxiliaryServices') {
-                // نموذج تقييم وظائف الخدمات المساعدة والحرفية
                 document.getElementById('supportServicesTab-title').textContent = 'مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (30%)';
                 document.getElementById('supportServicesTab1-title').textContent = 'الكفايات ويخصص له ما نسبته (60%) من تقييم الأداء';
                 document.getElementById('supportServicesTab2-title').textContent = 'مجموع النسبة المستححة لعناصر التميز الوظيفي (10)';
                 
-                // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-supportServicesTab-title').textContent = 'أ- مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (30%)';
                 document.getElementById('summary-supportServicesTab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (60%) من تقييم الأداء';
                 document.getElementById('summary-supportServicesTab2-title').textContent = 'ج- مجموع النسبة المستححة لعناصر التميز الوظيفي (10)';
             }
             else if (evaluationType === 'middle') {
-                // نموذج تقييم وظائف الإدارة الوسطى
                 document.getElementById('tab3-title').textContent = 'مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (70%)';
                 document.getElementById('middleManagementTab-title').textContent = 'الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء';
                 document.getElementById('tab2-title').textContent = 'مجموع النسبة المستححة لعناصر التميز الوظيفي (20)';
                 
-                // تعديل عناوين التبويب الملخص
                 document.getElementById('summary-tab3-title').textContent = 'أ- مجموع العلامة المستححة للنتائج المطلوب من الموظف تحقيقها (70%)';
                 document.getElementById('summary-tab1-title').textContent = 'ب- الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء';
                 document.getElementById('summary-tab2-title').textContent = 'ج- مجموع النسبة المستححة لعناصر التميز الوظيفي (20)';
             }
         }
 
-        // دالة موحدة للتحقق من الإدخال وتصحيحه فوراً في جميع نماذج التقييم
         function validateAndCorrectCompetencyInput(inputElement) {
             let value = parseFloat(inputElement.value);
             const errorMessageDiv = inputElement.closest('.tab-content').querySelector('.error-message');
             
-            // إعادة تعيين أنماط الخطأ
             inputElement.style.borderColor = '';
             inputElement.classList.remove('required-input');
             if(errorMessageDiv) {
@@ -1821,12 +1693,10 @@
             }
 
             if (isNaN(value)) {
-                // إذا لم تكن القيمة رقماً، قم بمسح الحقل
                 inputElement.value = '';
-                return; // لا تقم بالحساب إذا كان فارغاً
+                return;
             }
             
-            // تقييد القيمة بين 0 و 95
             if (value < 0) {
                 value = 0;
                 inputElement.value = '0';
@@ -1835,7 +1705,6 @@
                 inputElement.value = '95';
             }
             
-            // الآن، قم باستدعاء دالة الحساب لتحديث بقية الجدول
             const parentTab = inputElement.closest('.tab-content');
             if (parentTab) {
                 switch (parentTab.id) {
@@ -1852,7 +1721,6 @@
             }
         }
 
-        // تعديل دالة حسابات الإدارة الوسطى لإزالة التحقق المكرر
         function calculateMiddleManagement() {
             let totalScore = 0;
             const competencyRows = document.querySelectorAll('#middleManagement-tbody tr[data-competency]');
@@ -1870,19 +1738,16 @@
                 const scoreInput = row.querySelector('.score-input');
 
                 let importance = parseFloat(importanceInput.value) || 0;
-                // لم نعد بحاجة للتحقق من القيمة هنا لأن دالة validateAndCorrectCompetencyInput تضمن أنها صحيحة
                 let achieved = parseFloat(achievedInput.value) || 0;
 
                 importanceInput.style.borderColor = '';
                 achievedInput.style.borderColor = '';
 
-                // التحقق من وجود قيمة في حقل الأهمية النسبية
                 if (importanceInput.value === '' || importanceInput.value === null) {
                     importanceInput.classList.add('required-input');
                     hasEmptyField = true;
                     importance = 0;
                 } 
-                // التحقق من صحة الأهمية النسبية
                 else if (isNaN(importance) || importance < 0 || importance > 100) {
                     importanceInput.classList.add('required-input');
                     if (!hasError) {
@@ -1896,13 +1761,11 @@
                     totalImportance += importance;
                 }
 
-                // التحقق من وجود قيمة في حقل النسبة المحققة
                 if (achievedInput.value === '' || achievedInput.value === null) {
                     achievedInput.classList.add('required-input');
                     hasEmptyField = true;
                     achieved = 0;
                 } else {
-                    // تمت إزالة التحقق من القيمة هنا لأنها مضمونة الآن
                     achievedInput.classList.remove('required-input');
                 }
 
@@ -1912,7 +1775,6 @@
                 totalScore += calculatedScore;
             });
 
-            // التحقق من مجموع الأهمية النسبية - يجب أن يكون بالضبط 100
             if (totalImportance !== 100) {
                 if (!hasImportanceError) {
                     errorMessageDiv.textContent = 'خطأ: مجموع الأهمية النسبية يجب أن يكون بالضبط 100%. الرجاء تعديل القيم.';
@@ -1924,23 +1786,19 @@
                 });
             }
 
-            // عرض رسالة خاصة للحقول الفارغة
             if (hasEmptyField && !hasError && !hasImportanceError) {
                 errorMessageDiv.textContent = 'الرجاء إدخال قيمة في جميع الحقول المطلوبة.';
                 errorMessageDiv.style.display = 'block';
             }
 
-            // عرض قيمة مجموع العلامة المستحقة
             document.getElementById('totalMiddleManagementScore').value = formatOutputValue(totalScore);
 
-            // التقييم النهائي = مجموع العلامة المستحقة للكفاية لدى الموظف × 10%
             let finalEvaluation = totalScore * 0.1;
             document.getElementById('finalMiddleManagementEvaluation').value = formatOutputValue(finalEvaluation);
 
             updateTab4Summary();
         }
 
-        // دالة حسابات التبويب الأول (الكفايات)
         function calculateAllTab1() {
             const evaluationType = document.getElementById('evaluationType').value;
             let totalActualLevel = 0;
@@ -1959,7 +1817,6 @@
                 const actualLevelInput = row.querySelector('.actual-level');
 
                 let desiredCompetencyScore = selectedScoreRadio ? parseFloat(selectedScoreRadio.value) : 0;
-                // تغيير هنا: استخدام القيمة المدخلة بدلاً من القيمة الثابتة
                 let achievedRatio = parseFloat(achievedRatioInput.value) || 0;
 
                 Array.from(row.querySelectorAll('input[type="radio"]')).forEach(radio => radio.closest('td').style.border = '');
@@ -1974,13 +1831,11 @@
                     desiredCompetencyScore = 0;
                 }
 
-                // التحقق من وجود قيمة في حقل النسبة المحققة
                 if (achievedRatioInput.value === '' || achievedRatioInput.value === null) {
                     achievedRatioInput.classList.add('required-input');
                     hasEmptyField = true;
                     achievedRatio = 0;
                 } else {
-                    // تمت إزالة التحقق من القيمة هنا لأنها مضمونة الآن
                     achievedRatioInput.classList.remove('required-input');
                 }
 
@@ -1991,7 +1846,6 @@
                 totalDesiredCompetencySum += desiredCompetencyScore;
             });
 
-            // عرض رسالة خاصة للحقول الفارغة
             if (hasEmptyField && !hasError) {
                 errorMessageDiv.textContent = 'الرجاء إدخال قيمة في جميع حقول النسبة المحققة من الكفاية.';
                 errorMessageDiv.style.display = 'block';
@@ -2003,13 +1857,10 @@
             let finalEvaluation = 0;
             if (totalDesiredCompetencySum > 0) {
                 if (evaluationType === 'middle') {
-                    // للوظائف الوسطى: (المجموع الفعلي / المجموع المطلوب) * 10
                     finalEvaluation = (totalActualLevel / totalDesiredCompetencySum) * 10;
                 } else if (evaluationType === 'supportServices') {
-                    // للوظائف المساندة: (المجموع الفعلي / المجموع المطلوب) * 30
                     finalEvaluation = (totalActualLevel / totalDesiredCompetencySum) * 30;
                 } else {
-                    // للوظائف التخصصية: (المجموع الفعلي / المجموع المطلوب) * 20
                     finalEvaluation = (totalActualLevel / totalDesiredCompetencySum) * 20;
                 }
             }
@@ -2018,7 +1869,6 @@
             updateTab4Summary();
         }
 
-        // دالة حسابات التبويب الأول (الكفايات) للخدمات المساعدة والحرفية
         function calculateAllSupportServicesTab1() {
             let totalActualLevel = 0;
             let totalDesiredCompetencySum = 0;
@@ -2050,13 +1900,11 @@
                     desiredCompetencyScore = 0;
                 }
 
-                // التحقق من وجود قيمة في حقل النسبة المحققة
                 if (achievedRatioInput.value === '' || achievedRatioInput.value === null) {
                     achievedRatioInput.classList.add('required-input');
                     hasEmptyField = true;
                     achievedRatio = 0;
                 } else {
-                    // تمت إزالة التحقق من القيمة هنا لأنها مضمونة الآن
                     achievedRatioInput.classList.remove('required-input');
                 }
 
@@ -2067,7 +1915,6 @@
                 totalDesiredCompetencySum += desiredCompetencyScore;
             });
 
-            // عرض رسالة خاصة للحقول الفارغة
             if (hasEmptyField && !hasError) {
                 errorMessageDiv.textContent = 'الرجاء إدخال قيمة في جميع حقول النسبة المحققة من الكفاية.';
                 errorMessageDiv.style.display = 'block';
@@ -2076,7 +1923,6 @@
             document.getElementById('totalDesiredCompetencyAux').value = formatOutputValue(totalDesiredCompetencySum);
             document.getElementById('totalActualLevelAux').value = formatOutputValue(totalActualLevel);
 
-            // للخدمات المساعدة والحرفية: (المجموع الفعلي / المجموع المطلوب) * 60
             let finalEvaluation = 0;
             if (totalDesiredCompetencySum > 0) {
                 finalEvaluation = (totalActualLevel / totalDesiredCompetencySum) * 60;
@@ -2086,16 +1932,15 @@
             updateSupportServicesTab4Summary();
         }
 
-        // دالة حسابات التبويب الثاني (عناصر التميز الوظيفي)
         function calculateAllTab2() {
             const weights = getEvaluationWeights();
             let totalDeservedPercentage = 0;
-            let totalMaxScoreSumTab2 = 0; // لجمع قيم الأهمية النسبية في هذا التبويب
+            let totalMaxScoreSumTab2 = 0;
             const tab2Rows = document.querySelectorAll('#tab2 .evaluation-table tbody tr[data-item]');
             const errorMessageDiv = document.getElementById('tab2-error-message');
             errorMessageDiv.style.display = 'none';
-            let hasInputError = false; // لأخطاء الحقول الفردية
-            let hasTotalSumError = false; // لأخطاء المجموع الكلي
+            let hasInputError = false;
+            let hasTotalSumError = false;
 
             tab2Rows.forEach(row => {
                 const maxScoreInput = row.querySelector('.max-score-input');
@@ -2107,7 +1952,6 @@
                 maxScoreInput.style.borderColor = '';
                 deservedPercentageInput.style.borderColor = '';
 
-                // التحقق من صلاحية مدخلات الأهمية النسبية
                 if (isNaN(maxScore) || maxScore < 0) {
                     maxScoreInput.style.borderColor = 'red';
                     hasInputError = true;
@@ -2118,7 +1962,6 @@
                     maxScoreInput.classList.remove('required-input');
                 }
 
-                // التحقق من صلاحية مدخلات النسبة المستححة
                 if (isNaN(deserved) || deserved < 0) {
                     deservedPercentageInput.style.borderColor = 'red';
                     hasInputError = true;
@@ -2129,25 +1972,21 @@
                     deservedPercentageInput.classList.remove('required-input');
                 }
 
-                // التحقق من أن النسبة المستححة لا تتجاوز الأهمية النسبية لنفس الصف
                 if (deserved > maxScore && !isNaN(maxScore) && maxScore >= 0) {
                     deservedPercentageInput.style.borderColor = 'red';
-                    if (!hasInputError) { // عرض رسالة واحدة فقط إذا لم يكن هناك خطأ إدخال آخر
+                    if (!hasInputError) {
                         errorMessageDiv.textContent = 'خطأ: قيمة "النسبة المستححة" لا يمكن أن تتجاوز "الأهمية النسبية" في نفس الصف.';
                         errorMessageDiv.style.display = 'block';
-                        // لا نضبط hasInputError هنا لأنه ليس خطأ في طبيعة المدخل بل تجاوز للحد
                     }
-                    deserved = maxScore; // ضبط القيمة لتجنب مشاكل في المجموع
-                    deservedPercentageInput.value = formatOutputValue(deserved); // تحديث الحقل بالقيمة الصحيحة
+                    deserved = maxScore;
+                    deservedPercentageInput.value = formatOutputValue(deserved);
                 }
 
-                totalMaxScoreSumTab2 += maxScore; // جمع الأهمية النسبية
+                totalMaxScoreSumTab2 += maxScore;
                 totalDeservedPercentage += deserved;
             });
 
-            // **التعديل الجديد: التحقق من مجموع الأهمية النسبية (العلامة القصوى) يجب أن يكون بالضبط يساوي الحد المسموح به**
             if (evaluationType === 'middle') {
-                // للوظائف الوسطى، يجب أن يكون المجموع بالضبط 20
                 if (totalMaxScoreSumTab2 !== weights.tab2MaxScoreSum) {
                     tab2Rows.forEach(row => {
                         row.querySelector('.max-score-input').style.borderColor = 'red';
@@ -2157,7 +1996,6 @@
                     hasTotalSumError = true;
                 }
             } else {
-                // للوظائف التخصصية والإدارية والمهنية المساندة، يجب أن يكون المجموع بالضبط 15
                 if (totalMaxScoreSumTab2 !== weights.tab2MaxScoreSum) {
                     tab2Rows.forEach(row => {
                         row.querySelector('.max-score-input').style.borderColor = 'red';
@@ -2168,9 +2006,7 @@
                 }
             }
 
-            // عرض رسالة خطأ واحدة فقط، إذا كان هناك خطأ في الإدخال الفردي أو في المجموع الكلي
             if (hasInputError || hasTotalSumError) {
-                // إذا كان هناك خطأ في المجموع الكلي، فإنه الأولوية في الرسالة
                 if (hasTotalSumError) {
                     errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن يكون بالضبط ${weights.tab2MaxScoreSum}.`;
                 } else if (hasInputError) {
@@ -2182,28 +2018,26 @@
             }
             document.getElementById('totalDeservedPercentage').value = formatOutputValue(totalDeservedPercentage);
 
-            // التحقق النهائي لمجموع النسبة المستححة (لا يتجاوز الحد الأقصى)
             if (!hasInputError && !hasTotalSumError && totalDeservedPercentage > weights.tab2MaxScoreSum) {
                 errorMessageDiv.textContent = `خطأ: مجموع النسبة المستححة تجاوز ${weights.tab2MaxScoreSum}%. الرجاء التعديل.`;
                 errorMessageDiv.style.display = 'block';
                 document.getElementById('totalDeservedPercentage').style.borderColor = 'red';
-            } else if (!hasInputError && !hasTotalSumError) { // فقط إذا لم يكن هناك أخطاء أخرى
+            } else if (!hasInputError && !hasTotalSumError) {
                 errorMessageDiv.style.display = 'none';
                 document.getElementById('totalDeservedPercentage').style.borderColor = '';
             }
             updateTab4Summary();
         }
 
-        // دالة حسابات التبويب الثاني (عناصر التميز الوظيفي) للخدمات المساعدة والحرفية
         function calculateAllSupportServicesTab2() {
             const weights = getEvaluationWeights();
             let totalDeservedPercentage = 0;
-            let totalMaxScoreSumTab2 = 0; // لجمع قيم الأهمية النسبية في هذا التبويب
+            let totalMaxScoreSumTab2 = 0;
             const tab2Rows = document.querySelectorAll('#supportServicesTab2 .evaluation-table tbody tr[data-item]');
             const errorMessageDiv = document.getElementById('supportServicesTab2-error-message');
             errorMessageDiv.style.display = 'none';
-            let hasInputError = false; // لأخطاء الحقول الفردية
-            let hasTotalSumError = false; // لأخطاء المجموع الكلي
+            let hasInputError = false;
+            let hasTotalSumError = false;
 
             tab2Rows.forEach(row => {
                 const maxScoreInput = row.querySelector('.max-score-input-aux');
@@ -2215,7 +2049,6 @@
                 maxScoreInput.style.borderColor = '';
                 deservedPercentageInput.style.borderColor = '';
 
-                // التحقق من صلاحية مدخلات الأهمية النسبية
                 if (isNaN(maxScore) || maxScore < 0) {
                     maxScoreInput.style.borderColor = 'red';
                     hasInputError = true;
@@ -2226,7 +2059,6 @@
                     maxScoreInput.classList.remove('required-input');
                 }
 
-                // التحقق من صلاحية مدخلات النسبة المستححة
                 if (isNaN(deserved) || deserved < 0) {
                     deservedPercentageInput.style.borderColor = 'red';
                     hasInputError = true;
@@ -2237,23 +2069,20 @@
                     deservedPercentageInput.classList.remove('required-input');
                 }
 
-                // التحقق من أن النسبة المستححة لا تتجاوز الأهمية النسبية لنفس الصف
                 if (deserved > maxScore && !isNaN(maxScore) && maxScore >= 0) {
                     deservedPercentageInput.style.borderColor = 'red';
-                    if (!hasInputError) { // عرض رسالة واحدة فقط إذا لم يكن هناك خطأ إدخال آخر
+                    if (!hasInputError) {
                         errorMessageDiv.textContent = 'خطأ: قيمة "النسبة المستححة" لا يمكن أن تتجاوز "الأهمية النسبية" في نفس الصف.';
                         errorMessageDiv.style.display = 'block';
-                        // لا نضبط hasInputError هنا لأنه ليس خطأ في طبيعة المدخل بل تجاوز للحد
                     }
-                    deserved = maxScore; // ضبط القيمة لتجنب مشاكل في المجموع
-                    deservedPercentageInput.value = formatOutputValue(deserved); // تحديث الحقل بالقيمة الصحيحة
+                    deserved = maxScore;
+                    deservedPercentageInput.value = formatOutputValue(deserved);
                 }
 
-                totalMaxScoreSumTab2 += maxScore; // جمع الأهمية النسبية
+                totalMaxScoreSumTab2 += maxScore;
                 totalDeservedPercentage += deserved;
             });
 
-            // **التعديل الجديد: التحقق من مجموع الأهمية النسبية (العلامة القصوى) يجب أن يكون بالضبط 10 للخدمات المساعدة والحرفية**
             if (totalMaxScoreSumTab2 !== weights.tab2MaxScoreSum) {
                 tab2Rows.forEach(row => {
                     row.querySelector('.max-score-input-aux').style.borderColor = 'red';
@@ -2263,9 +2092,7 @@
                 hasTotalSumError = true;
             }
 
-            // عرض رسالة خطأ واحدة فقط، إذا كان هناك خطأ في الإدخال الفردي أو في المجموع الكلي
             if (hasInputError || hasTotalSumError) {
-                // إذا كان هناك خطأ في المجموع الكلي، فإنه الأولوية في الرسالة
                 if (hasTotalSumError) {
                     errorMessageDiv.textContent = `خطأ: مجموع "الأهمية النسبية" يجب أن يكون بالضبط ${weights.tab2MaxScoreSum}.`;
                 } else if (hasInputError) {
@@ -2277,19 +2104,17 @@
             }
             document.getElementById('totalDeservedPercentageAux').value = formatOutputValue(totalDeservedPercentage);
 
-            // التحقق النهائي لمجموع النسبة المستححة (لا يتجاوز الحد الأقصى)
             if (!hasInputError && !hasTotalSumError && totalDeservedPercentage > weights.tab2MaxScoreSum) {
                 errorMessageDiv.textContent = `خطأ: مجموع النسبة المستححة تجاوز ${weights.tab2MaxScoreSum}%. الرجاء التعديل.`;
                 errorMessageDiv.style.display = 'block';
                 document.getElementById('totalDeservedPercentageAux').style.borderColor = 'red';
-            } else if (!hasInputError && !hasTotalSumError) { // فقط إذا لم يكن هناك أخطاء أخرى
+            } else if (!hasInputError && !hasTotalSumError) {
                 errorMessageDiv.style.display = 'none';
                 document.getElementById('totalDeservedPercentageAux').style.borderColor = '';
             }
             updateSupportServicesTab4Summary();
         }
 
-        // دالة لإنشاء صفوف التبويب الثالث ديناميكيًا
         function generateTab3Rows() {
             const numResultsInput = document.getElementById('numResults');
             let numResults = parseInt(numResultsInput.value);
@@ -2297,7 +2122,6 @@
             const evaluationType = document.getElementById('evaluationType').value;
             const weights = getEvaluationWeights();
 
-            // حفظ القيم الحالية قبل مسح الصفوف
             const currentValues = [];
             document.querySelectorAll('#tab3-tbody tr[data-item]').forEach(row => {
                 const index = parseInt(row.querySelector('td:first-child').textContent);
@@ -2307,9 +2131,8 @@
                 currentValues[index - 1] = { resultText, maxScore, achievedPercent };
             });
 
-            tbody.innerHTML = ''; // مسح الصفوف الموجودة
+            tbody.innerHTML = '';
 
-            // **التعديل هنا: تغيير نطاق min و max إلى 2-5**
             if (isNaN(numResults) || numResults < 2) {
                 numResults = 2;
                 numResultsInput.value = 2;
@@ -2341,22 +2164,19 @@
             `;
             tbody.appendChild(totalRow);
 
-            // إضافة مستمعي الأحداث للحقول الجديدة
             document.querySelectorAll('#tab3 .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllTab3);
                 input.addEventListener('change', calculateAllTab3);
             });
-            calculateAllTab3(); // حساب الصفوف الجديدة فور إنشائها أو تحديثها
+            calculateAllTab3();
         }
 
-        // دالة لإنشاء صفوف التبويب الخاص بالخدمات المساعدة والحرفية ديناميكيًا
         function generateSupportServicesTabRows() {
             const numResultsInput = document.getElementById('numResultsAux');
             let numResults = parseInt(numResultsInput.value);
             const tbody = document.getElementById('supportServicesTab-tbody');
             const weights = getEvaluationWeights();
 
-            // حفظ القيم الحالية قبل مسح الصفوف
             const currentValues = [];
             document.querySelectorAll('#supportServicesTab-tbody tr[data-item]').forEach(row => {
                 const index = parseInt(row.querySelector('td:first-child').textContent);
@@ -2366,9 +2186,8 @@
                 currentValues[index - 1] = { resultText, maxScore, achievedPercent };
             });
 
-            tbody.innerHTML = ''; // مسح الصفوف الموجودة
+            tbody.innerHTML = '';
 
-            // تغيير نطاق min و max إلى 2-5
             if (isNaN(numResults) || numResults < 2) {
                 numResults = 2;
                 numResultsInput.value = 2;
@@ -2400,15 +2219,13 @@
             `;
             tbody.appendChild(totalRow);
 
-            // إضافة مستمعي الأحداث للحقول الجديدة
             document.querySelectorAll('#supportServicesTab .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllSupportServicesTab);
                 input.addEventListener('change', calculateAllSupportServicesTab);
             });
-            calculateAllSupportServicesTab(); // حساب الصفوف الجديدة فور إنشائها أو تحديثها
+            calculateAllSupportServicesTab();
         }
 
-        // دالة حسابات التبويب الثالث
         function calculateAllTab3() {
             const weights = getEvaluationWeights();
             let totalDeservedMarkTab3 = 0;
@@ -2486,7 +2303,6 @@
             updateTab4Summary();
         }
 
-        // دالة حسابات التبويب الخاص بالخدمات المساعدة والحرفية
         function calculateAllSupportServicesTab() {
             const weights = getEvaluationWeights();
             let totalDeservedMarkTab = 0;
@@ -2564,7 +2380,6 @@
             updateSupportServicesTab4Summary();
         }
 
-        // دالة تحديث التبويب الرابع (تقييم الأداء) للوظائف التخصصية والمساندة والوسطى
         function updateTab4Summary() {
             const evaluationType = document.getElementById('evaluationType').value;
             if (evaluationType === 'underTrial' || evaluationType === 'auxiliaryServices') {
@@ -2574,7 +2389,6 @@
             const tab3Mark = parseFloat(document.getElementById('totalDeservedMarkTab3').value) || 0;
             let tab1Evaluation = 0;
             
-            // إذا كان نموذج الإدارة الوسطى، استخدم قيمة التقييم من الجدول الجديد
             if (evaluationType === 'middle') {
                 tab1Evaluation = parseFloat(document.getElementById('finalMiddleManagementEvaluation').value) || 0;
             } else {
@@ -2591,21 +2405,18 @@
             document.getElementById('finalTotalScore').value = formatOutputValue(finalTotalScore);
 
             let overallGrade = '';
-            if (finalTotalScore >= 90) {
-                overallGrade = 'إنجاز المهام ممتاز';
-            } else if (finalTotalScore >= 80) {
-                overallGrade = 'إنجاز المهام جيد جداً';
+            if (finalTotalScore >= 85) {
+                overallGrade = 'انجز المهام بامتياز';
             } else if (finalTotalScore >= 70) {
-                overallGrade = 'إنجاز المهام جيد';
-            } else if (finalTotalScore >= 60) {
-                overallGrade = 'إنجاز المهام مقبول';
+                overallGrade = 'انجاز المهام جيد جدا';
+            } else if (finalTotalScore >= 55) {
+                overallGrade = 'انجاز المهام جيد';
             } else {
-                overallGrade = 'إنجاز المهام ضعيف';
+                overallGrade = 'انجز المهام مقبول';
             }
             document.getElementById('overallGrade').value = overallGrade;
         }
 
-        // دالة تحديث التبويب الرابع (تقييم الأداء) للخدمات المساعدة والحرفية
         function updateSupportServicesTab4Summary() {
             const tabMark = parseFloat(document.getElementById('totalDeservedMarkAux').value) || 0;
             const tab1Evaluation = parseFloat(document.getElementById('finalEvaluationAux').value) || 0;
@@ -2619,38 +2430,34 @@
             document.getElementById('finalTotalScoreAux').value = formatOutputValue(finalTotalScore);
 
             let overallGrade = '';
-            if (finalTotalScore >= 90) {
-                overallGrade = 'إنجاز المهام ممتاز';
-            } else if (finalTotalScore >= 80) {
-                overallGrade = 'إنجاز المهام جيد جداً';
+            if (finalTotalScore >= 85) {
+                overallGrade = 'انجز المهام بامتياز';
             } else if (finalTotalScore >= 70) {
-                overallGrade = 'إنجاز المهام جيد';
-            } else if (finalTotalScore >= 60) {
-                overallGrade = 'إنجاز المهام مقبول';
+                overallGrade = 'انجاز المهام جيد جدا';
+            } else if (finalTotalScore >= 55) {
+                overallGrade = 'انجاز المهام جيد';
             } else {
-                overallGrade = 'إنجاز المهام ضعيف';
+                overallGrade = 'انجز المهام مقبول';
             }
             document.getElementById('overallGradeAux').value = overallGrade;
         }
 
-        // دالة حسابات تبويب الموظف تحت التجربة الجديد مع التحقق من العلامة المتحققة
         function validateAndCalculateUnderTrialTab(inputElement) {
             const row = inputElement.closest('tr');
-            const maxScoreCell = row.cells[2]; // الخلية الثالثة تحتوي على العلامة القصوى
+            const maxScoreCell = row.cells[2];
             const maxScore = parseInt(maxScoreCell.textContent);
             let achievedMark = parseFloat(inputElement.value);
             const errorMessageDiv = document.getElementById('underTrial-error-message');
 
-            // إزالة أي تلوين سابق للحدود
             inputElement.style.borderColor = '';
-            errorMessageDiv.style.display = 'none'; // إخفاء الرسالة مؤقتًا
+            errorMessageDiv.style.display = 'none';
 
             if (isNaN(achievedMark) || achievedMark < 0) {
                 inputElement.style.borderColor = 'red';
                 errorMessageDiv.textContent = 'الرجاء إدخال رقم صحيح وموجب.';
                 errorMessageDiv.style.display = 'block';
-                inputElement.value = ''; // مسح القيمة غير الصالحة
-                calculateUnderTrialTab(); // إعادة حساب المجموع مع القيم الصالحة فقط
+                inputElement.value = '';
+                calculateUnderTrialTab();
                 return;
             }
 
@@ -2658,17 +2465,17 @@
                 inputElement.style.borderColor = 'red';
                 errorMessageDiv.textContent = `خطأ: العلامة المتحققة لا يمكن أن تتجاوز العلامة القصوى (${maxScore}).`;
                 errorMessageDiv.style.display = 'block';
-                inputElement.value = maxScore; // ضبط القيمة لتكون هي العلامة القصوى
+                inputElement.value = maxScore;
             }
-            calculateUnderTrialTab(); // إعادة حساب المجموع بعد التحقق
+            calculateUnderTrialTab();
         }
 
         function calculateUnderTrialTab() {
             let totalAchievedScore = 0;
             const underTrialRows = document.querySelectorAll('#underTrial-tbody tr[data-item]');
             const errorMessageDiv = document.getElementById('underTrial-error-message');
-            let hasError = false; // ستتحكم هذه المتغير بما إذا كان هناك أي خطأ
-            let hasEmptyField = false; // للتحقق من وجود حقول فارغة
+            let hasError = false;
+            let hasEmptyField = false;
             
             underTrialRows.forEach(row => {
                 const achievedMarkInput = row.querySelector('.achieved-mark-underTrial');
@@ -2676,15 +2483,13 @@
                 const maxScore = parseInt(maxScoreCell.textContent);
                 let achievedMark = parseFloat(achievedMarkInput.value) || 0;
 
-                // التحقق من أن القيمة المدخلة ضمن النطاق الصحيح بعد التعديل الأولي في validateAndCalculateUnderTrialTab
                 if (achievedMarkInput.value === '' || achievedMarkInput.value === null) {
                     achievedMarkInput.classList.add('required-input');
                     hasEmptyField = true;
                     totalAchievedScore += 0;
                 } else if (isNaN(achievedMark) || achievedMark < 0 || achievedMark > maxScore) {
-                    // إذا لم تكن هناك قيمة صالحة، أو كانت خارج النطاق، اعتبرها 0 للحساب
                     totalAchievedScore += 0;
-                    hasError = true; // نضبط hasError لتظهر الرسالة العامة إذا كان هناك أي حقل غير صحيح
+                    hasError = true;
                 } else {
                     totalAchievedScore += achievedMark;
                     achievedMarkInput.classList.remove('required-input');
@@ -2694,20 +2499,17 @@
             document.getElementById('totalAchievedUnderTrial').value = formatOutputValue(totalAchievedScore, 0);
 
             let overallGrade = '';
-            if (totalAchievedScore >= 90) {
-                overallGrade = 'إنجاز المهام ممتاز';
-            } else if (totalAchievedScore >= 80) {
-                overallGrade = 'إنجاز المهام جيد جدا';
+            if (totalAchievedScore >= 85) {
+                overallGrade = 'انجز المهام بامتياز';
             } else if (totalAchievedScore >= 70) {
-                overallGrade = 'إنجاز المهام جيد';
-            } else if (totalAchievedScore >= 60) {
-                overallGrade = 'إنجاز المهام مقبول';
+                overallGrade = 'انجاز المهام جيد جدا';
+            } else if (totalAchievedScore >= 55) {
+                overallGrade = 'انجاز المهام جيد';
             } else {
-                overallGrade = 'إنجاز المهام ضعيف';
+                overallGrade = 'انجز المهام مقبول';
             }
             document.getElementById('overallGradeUnderTrial').value = overallGrade;
 
-            // إذا كان هناك أي حقل غير صالحقي، تظهر الرسالة العامة
             if (hasError) {
                 errorMessageDiv.textContent = 'الرجاء التأكد من إدخال قيم صحيحة لا تتجاوز العلامة القصوى لجميع البنود.';
                 errorMessageDiv.style.display = 'block';
@@ -2719,9 +2521,7 @@
             }
         }
 
-        // دالة إعادة تعيين النموذج (تفريغ جميع الحقول)
         function resetForm() {
-            // تفريغ جميع حقول الإدخال في التبويب الأول
             document.querySelectorAll('#tab1 input[type="radio"]').forEach(radio => {
                 radio.checked = false;
             });
@@ -2729,32 +2529,26 @@
                 input.value = '';
             });
 
-            // تفريغ جميع حقول الإدخال في التبويب الثاني
             document.querySelectorAll('#tab2 input[type="text"]').forEach(input => {
                 input.value = '';
             });
 
-            // تفريغ جميع حقول الإدخال في التبويب الثالث
             document.querySelectorAll('#tab3 input[type="text"]').forEach(input => {
                 input.value = '';
             });
 
-            // تفريغ جميع حقول الإدخال في التبويب الرابع
             document.querySelectorAll('#tab4 input[type="text"]').forEach(input => {
                 input.value = '';
             });
 
-            // تفريغ جميع حقول الإدخال في تبويب الموظف تحت التجربة
             document.querySelectorAll('#underTrialTab input[type="text"]').forEach(input => {
                 input.value = '';
             });
 
-            // تفريغ جميع حقول الإدخال في تبويب الإدارة الوسطى
             document.querySelectorAll('#middleManagementTab input[type="text"]').forEach(input => {
                 input.value = '';
             });
 
-            // تفريغ جميع حقول الإدخال في تبويبات الخدمات المساعدة والحرفية
             document.querySelectorAll('[id^="supportServicesTab"] input[type="text"]').forEach(input => {
                 input.value = '';
             });
@@ -2762,49 +2556,38 @@
                 radio.checked = false;
             });
 
-            // إعادة تعيين رسائل الخطأ
             document.querySelectorAll('.error-message').forEach(msg => {
                 msg.style.display = 'none';
                 msg.textContent = '';
             });
 
-            // إعادة تعيين لون الحدود
             document.querySelectorAll('input').forEach(input => {
                 input.style.borderColor = '';
             });
             
-            // إعادة تعيين فئة required-input
             document.querySelectorAll('.required-input').forEach(input => {
                 input.classList.remove('required-input');
             });
             
-            // تحديث الصفحة
             location.reload();
         }
 
-        // دالة للتحقق من الإدخال الرقمي
         function validateNumericInput(input) {
-            // السماح بالأرقام والنقطة والسالب فقط
             let value = input.value;
             
-            // إزالة أي أحرف غير مسموح بها
             value = value.replace(/[^0-9.-]/g, '');
             
-            // منع نقاط متعددة
             const dotCount = (value.match(/\./g) || []).length;
             if (dotCount > 1) {
                 value = value.replace(/\.+$/, '');
             }
             
-            // منع سالب في غير البداية
             if (value.indexOf('-') > 0) {
                 value = value.replace(/-/g, '');
             }
             
-            // تحديث قيمة الحقل
             input.value = value;
             
-            // منع الإدخال إذا كان الحقل فارغًا ويحاول المستخدم إدخال حرف
             if (input.value === '' && event.key.length === 1 && !/^[0-9.-]$/.test(event.key)) {
                 event.preventDefault();
             }
