@@ -1975,7 +1975,7 @@
                 if (deserved > maxScore && !isNaN(maxScore) && maxScore >= 0) {
                     deservedPercentageInput.style.borderColor = 'red';
                     if (!hasInputError) {
-                        errorMessageDiv.textContent = 'خطأ: قيمة "النسبة المستححة" لا يمكن أن تتجاوز "الأهمية النسبية" في نفس الصف.';
+                        errorMessageDiv.textContent = 'خطأ: قيمة "النسبة المستحقة" لا يمكن أن تتجاوز "الأهمية النسبية" في نفس الصف.';
                         errorMessageDiv.style.display = 'block';
                     }
                     deserved = maxScore;
@@ -2072,7 +2072,7 @@
                 if (deserved > maxScore && !isNaN(maxScore) && maxScore >= 0) {
                     deservedPercentageInput.style.borderColor = 'red';
                     if (!hasInputError) {
-                        errorMessageDiv.textContent = 'خطأ: قيمة "النسبة المستححة" لا يمكن أن تتجاوز "الأهمية النسبية" في نفس الصف.';
+                        errorMessageDiv.textContent = 'خطأ: قيمة "النسبة المستحقة" لا يمكن أن تتجاوز "الأهمية النسبية" في نفس الصف.';
                         errorMessageDiv.style.display = 'block';
                     }
                     deserved = maxScore;
@@ -2159,7 +2159,7 @@
             const totalRow = document.createElement('tr');
             totalRow.classList.add('total-row');
             totalRow.innerHTML = `
-                <th colspan="4" style="text-align: right;">مجموع العلامات المستححة</th>
+                <th colspan="4" style="text-align: right;">مجموع العلامات المستحقة</th>
                 <td><input type="text" id="totalDeservedMarkTab3" class="total-value-input numeric-input" readonly></td>
             `;
             tbody.appendChild(totalRow);
@@ -2214,7 +2214,7 @@
             const totalRow = document.createElement('tr');
             totalRow.classList.add('total-row');
             totalRow.innerHTML = `
-                <th colspan="4" style="text-align: right;">مجموع العلامات المستححة</th>
+                <th colspan="4" style="text-align: right;">مجموع العلامات المستحقة</th>
                 <td><input type="text" id="totalDeservedMarkAux" class="total-value-input numeric-input" readonly></td>
             `;
             tbody.appendChild(totalRow);
@@ -2595,5 +2595,6 @@
     </script>
 </body>
 </html>
+
 
 
