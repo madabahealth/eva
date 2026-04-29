@@ -462,9 +462,11 @@
             font-size: 1em;
             text-align: center;
         }
+        
+        /* === تم التعديل هنا لجعل جدول التقرير النهائي بعرض متوازن (90% بدلاً من 100%) === */
         #tab4 .summary-table,
         #supportServicesTab4 .summary-table {
-            width: 80%;
+            width: 90%; 
             margin: 0 auto;
             border-collapse: collapse;
             margin-bottom: 30px;
@@ -489,8 +491,10 @@
             background-color: #fff;
             color: #555;
             text-align: center;
-            width: 30%;
+            width: 35%; /* تم تعديل العرض ليكون 35% بدلاً من 40% */
         }
+        /* ================================================ */
+
         #tab4 .summary-table input[type="text"],
         #tab4 .summary-table input[type="number"],
         #supportServicesTab4 .summary-table input[type="text"],
@@ -520,10 +524,13 @@
         }
         .final-grade-section label {
             margin-bottom: 0;
+            white-space: nowrap;
         }
+        
+        /* === تم التعديل هنا لتوسيع حقل التقدير العام بشكل معتدل === */
         .final-grade-section input {
             flex-grow: 1;
-            max-width: 250px;
+            max-width: 450px; /* تم تعديله من 600px إلى 450px */
             padding: 10px 15px;
             border: 1px solid #99ccff;
             border-radius: 5px;
@@ -531,6 +538,8 @@
             text-align: center;
             background-color: #fff;
         }
+        /* ============================================ */
+
         #underTrialTab .evaluation-table {
             table-layout: fixed;
             width: 100%;
@@ -1529,7 +1538,7 @@
                 weights.tab1Divisor = 10; // تصحيح الخطأ هنا
             } else if (evaluationType === 'auxiliaryServices') {
                 weights.tab1Weight = 0.60;
-                weights.tab3MaxScoreSum = 30;
+                tab3MaxScoreSum = 30;
                 weights.tab2MaxScoreSum = 10;
                 weights.tab1Divisor = 20; // تصحيح الخطأ هنا
             }
@@ -2408,11 +2417,11 @@
             if (finalTotalScore >= 85) {
                 overallGrade = 'انجز المهام بامتياز';
             } else if (finalTotalScore >= 70) {
-                overallGrade = 'انجاز المهام جيد جدا';
+                overallGrade = 'إنجاز المهام بالمستوى المطلوب';
             } else if (finalTotalScore >= 55) {
-                overallGrade = 'انجاز المهام جيد';
+                overallGrade = 'إنجاز المهام بمستوى متوسط';
             } else {
-                overallGrade = 'انجز المهام مقبول';
+                overallGrade = 'إنجاز المهام بمستوى دون المتوسط';
             }
             document.getElementById('overallGrade').value = overallGrade;
         }
@@ -2433,11 +2442,11 @@
             if (finalTotalScore >= 85) {
                 overallGrade = 'انجز المهام بامتياز';
             } else if (finalTotalScore >= 70) {
-                overallGrade = 'انجاز المهام جيد جدا';
+                overallGrade = 'إنجاز المهام بالمستوى المطلوب';
             } else if (finalTotalScore >= 55) {
-                overallGrade = 'انجاز المهام جيد';
+                overallGrade = 'إنجاز المهام بمستوى متوسط';
             } else {
-                overallGrade = 'انجز المهام مقبول';
+                overallGrade = 'إنجاز المهام بمستوى دون المتوسط';
             }
             document.getElementById('overallGradeAux').value = overallGrade;
         }
@@ -2502,11 +2511,11 @@
             if (totalAchievedScore >= 85) {
                 overallGrade = 'انجز المهام بامتياز';
             } else if (totalAchievedScore >= 70) {
-                overallGrade = 'انجاز المهام جيد جدا';
+                overallGrade = 'إنجاز المهام بالمستوى المطلوب';
             } else if (totalAchievedScore >= 55) {
-                overallGrade = 'انجاز المهام جيد';
+                overallGrade = 'إنجاز المهام بمستوى متوسط';
             } else {
-                overallGrade = 'انجز المهام مقبول';
+                overallGrade = 'إنجاز المهام بمستوى دون المتوسط';
             }
             document.getElementById('overallGradeUnderTrial').value = overallGrade;
 
@@ -2595,6 +2604,3 @@
     </script>
 </body>
 </html>
-
-
-
