@@ -2414,14 +2414,26 @@
             document.getElementById('finalTotalScore').value = formatOutputValue(finalTotalScore);
 
             let overallGrade = '';
-            if (finalTotalScore >= 85) {
-                overallGrade = 'انجز المهام بامتياز';
-            } else if (finalTotalScore >= 70) {
-                overallGrade = 'إنجاز المهام بالمستوى المطلوب';
-            } else if (finalTotalScore >= 55) {
-                overallGrade = 'إنجاز المهام بمستوى متوسط';
+            if (evaluationType === 'middle') {
+                if (finalTotalScore >= 85) {
+                    overallGrade = 'انجز المهام بامتياز';
+                } else if (finalTotalScore >= 70) {
+                    overallGrade = 'إنجاز المهام بالمستوى المطلوب';
+                } else {
+                    overallGrade = 'إنجاز المهام بمستوى متوسط';
+                }
             } else {
-                overallGrade = 'إنجاز المهام بمستوى دون المتوسط';
+                if (finalTotalScore >= 85) {
+                    overallGrade = 'انجز المهام بامتياز';
+                } else if (finalTotalScore >= 70) {
+                    overallGrade = 'إنجاز المهام بالمستوى المطلوب';
+                } else if (finalTotalScore >= 60) {
+                    overallGrade = 'إنجاز المهام بمستوى متوسط';
+                } else if (finalTotalScore >= 50) {
+                    overallGrade = 'إنجاز المهام دون المستوى المتوسط';
+                } else {
+                    overallGrade = 'إنجاز المهام بمستوى ضعيف';
+                }
             }
             document.getElementById('overallGrade').value = overallGrade;
         }
@@ -2443,10 +2455,12 @@
                 overallGrade = 'انجز المهام بامتياز';
             } else if (finalTotalScore >= 70) {
                 overallGrade = 'إنجاز المهام بالمستوى المطلوب';
-            } else if (finalTotalScore >= 55) {
+            } else if (finalTotalScore >= 60) {
                 overallGrade = 'إنجاز المهام بمستوى متوسط';
+            } else if (finalTotalScore >= 50) {
+                overallGrade = 'إنجاز المهام دون المستوى المتوسط';
             } else {
-                overallGrade = 'إنجاز المهام بمستوى دون المتوسط';
+                overallGrade = 'إنجاز المهام بمستوى ضعيف';
             }
             document.getElementById('overallGradeAux').value = overallGrade;
         }
@@ -2512,10 +2526,12 @@
                 overallGrade = 'انجز المهام بامتياز';
             } else if (totalAchievedScore >= 70) {
                 overallGrade = 'إنجاز المهام بالمستوى المطلوب';
-            } else if (totalAchievedScore >= 55) {
+            } else if (totalAchievedScore >= 60) {
                 overallGrade = 'إنجاز المهام بمستوى متوسط';
+            } else if (totalAchievedScore >= 50) {
+                overallGrade = 'إنجاز المهام دون المستوى المتوسط';
             } else {
-                overallGrade = 'إنجاز المهام بمستوى دون المتوسط';
+                overallGrade = 'إنجاز المهام بمستوى ضعيف';
             }
             document.getElementById('overallGradeUnderTrial').value = overallGrade;
 
