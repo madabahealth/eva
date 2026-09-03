@@ -2411,7 +2411,7 @@
             document.getElementById('summaryTab2Percentage').value = formatOutputValue(tab2Percentage);
 
             const finalTotalScore = tab3Mark + tab1Evaluation + tab2Percentage;
-            document.getElementById('finalTotalScore').value = formatOutputValue(finalTotalScore);
+            document.getElementById('finalTotalScore').value = formatOutputValue(finalTotalScore, 1);
 
             let overallGrade = '';
             if (evaluationType === 'middle') {
@@ -2448,7 +2448,7 @@
             document.getElementById('summarySupportServicesTab2Percentage').value = formatOutputValue(tab2Percentage);
 
             const finalTotalScore = tabMark + tab1Evaluation + tab2Percentage;
-            document.getElementById('finalTotalScoreAux').value = formatOutputValue(finalTotalScore);
+            document.getElementById('finalTotalScoreAux').value = formatOutputValue(finalTotalScore, 1);
 
             let overallGrade = '';
             if (finalTotalScore >= 85) {
