@@ -830,6 +830,10 @@
             <div id="middleManagementTab" class="tab-content" style="display: none;">
                 <h3 id="middleManagementTab-title">الكفايات ويخصص له ما نسبته (10%) من تقييم الأداء</h3>
                 <p>الرجاء إدخال البيانات الخاصة بالتقييم:</p>
+                <div class="results-count-section">
+                    <label for="numCompetencies">تحديد عدد الكفايات (5-10):</label>
+                    <input type="text" id="numCompetencies" value="7" min="5" max="10" class="numeric-input" onchange="generateMiddleManagementRows()">
+                </div>
                 <table class="middle-management-table">
                     <thead>
                         <tr>
@@ -840,48 +844,6 @@
                         </tr>
                     </thead>
                     <tbody id="middleManagement-tbody">
-                        <tr data-competency="communication">
-                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
-                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="score-input numeric-input" readonly></td>
-                        </tr>
-                        <tr data-competency="problemSolving">
-                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
-                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="score-input numeric-input" readonly></td>
-                        </tr>
-                        <tr data-competency="customerOrientation">
-                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
-                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="score-input numeric-input" readonly></td>
-                        </tr>
-                        <tr data-competency="accountability">
-                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
-                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="score-input numeric-input" readonly></td>
-                        </tr>
-                        <tr data-competency="innovation">
-                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
-                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="score-input numeric-input" readonly></td>
-                        </tr>
-                        <tr data-competency="teamwork">
-                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
-                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="score-input numeric-input" readonly></td>
-                        </tr>
-                        <tr data-competency="leadership">
-                            <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
-                            <td><input type="text" class="importance-input numeric-input required-input" min="0" max="100" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="achieved-input numeric-input required-input" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
-                            <td><input type="text" class="score-input numeric-input" readonly></td>
-                        </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total-row">
@@ -1453,39 +1415,10 @@
 
             document.getElementById('numResultsAux').addEventListener('change', generateSupportServicesTabRows);
             
-            document.querySelectorAll('#middleManagementTab .importance-input').forEach(input => {
-                input.addEventListener('input', calculateMiddleManagement);
-                input.addEventListener('change', calculateMiddleManagement);
-            });
-            
-            document.querySelectorAll('#middleManagementTab .achieved-input').forEach(input => {
-                input.addEventListener('input', function() { validateAndCorrectCompetencyInput(this); });
-                input.addEventListener('change', function() { validateAndCorrectCompetencyInput(this); });
-            });
+            document.getElementById('numCompetencies').addEventListener('change', generateMiddleManagementRows);
             
             document.querySelectorAll('.numeric-input').forEach(input => {
-                input.addEventListener('input', function(e) {
-                    validateNumericInput(this);
-                });
-                
-                input.addEventListener('keydown', function(e) {
-                    if ([8, 9, 13, 27, 46].indexOf(e.keyCode) !== -1 ||
-                        [37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
-                        (e.ctrlKey && [65, 67, 86, 88].indexOf(e.keyCode) !== -1)) {
-                        return;
-                    }
-                    
-                    if (!/^[0-9.-]$/.test(e.key)) {
-                        e.preventDefault();
-                    }
-                });
-                
-                input.addEventListener('paste', function(e) {
-                    const pastedData = (e.clipboardData || window.clipboardData).getData('text');
-                    if (!/^[0-9.-]*$/.test(pastedData)) {
-                        e.preventDefault();
-                    }
-                });
+                attachNumericValidation(input);
             });
         });
         
@@ -1547,6 +1480,7 @@
 
         let tab3RowsGenerated = false;
         let supportServicesTabRowsGenerated = false;
+        let middleManagementRowsGenerated = false;
 
         function handleEvaluationTypeChange() {
             const evaluationType = document.getElementById('evaluationType').value;
@@ -1609,6 +1543,10 @@
                     if (!tab3RowsGenerated) {
                         generateTab3Rows();
                         tab3RowsGenerated = true;
+                    }
+                    if (!middleManagementRowsGenerated) {
+                        generateMiddleManagementRows();
+                        middleManagementRowsGenerated = true;
                     }
                     calculateAllTab3();
                     calculateMiddleManagement();
@@ -1728,6 +1666,61 @@
                         break;
                 }
             }
+        }
+
+        function generateMiddleManagementRows() {
+            const numInput = document.getElementById('numCompetencies');
+            let num = parseInt(numInput.value);
+            const tbody = document.getElementById('middleManagement-tbody');
+
+            const currentValues = [];
+            document.querySelectorAll('#middleManagement-tbody tr[data-competency]').forEach((row, idx) => {
+                const importanceEl = row.querySelector('.importance-input');
+                const achievedEl = row.querySelector('.achieved-input');
+                currentValues[idx] = {
+                    importance: importanceEl ? importanceEl.value : '',
+                    achieved: achievedEl ? achievedEl.value : ''
+                };
+            });
+
+            if (isNaN(num) || num < 5) {
+                num = 5;
+                numInput.value = 5;
+            } else if (num > 10) {
+                num = 10;
+                numInput.value = 10;
+            }
+
+            tbody.innerHTML = '';
+
+            for (let i = 1; i <= num; i++) {
+                const row = document.createElement('tr');
+                row.setAttribute('data-competency', `comp${i}`);
+                const saved = currentValues[i - 1] || { importance: '', achieved: '' };
+                row.innerHTML = `
+                    <td class="competency-cell">يتم الرجوع إلى مصفوفة الكفايات</td>
+                    <td><input type="text" class="importance-input numeric-input required-input" value="${saved.importance || ''}" min="0" max="100" onchange="calculateMiddleManagement()"></td>
+                    <td><input type="text" class="achieved-input numeric-input required-input" value="${saved.achieved || ''}" min="0" max="99" placeholder="0-99" onchange="calculateMiddleManagement()"></td>
+                    <td><input type="text" class="score-input numeric-input" readonly></td>
+                `;
+                tbody.appendChild(row);
+            }
+
+            document.querySelectorAll('#middleManagementTab .importance-input').forEach(input => {
+                input.addEventListener('input', calculateMiddleManagement);
+                input.addEventListener('change', calculateMiddleManagement);
+            });
+
+            document.querySelectorAll('#middleManagementTab .achieved-input').forEach(input => {
+                input.addEventListener('input', function() { validateAndCorrectCompetencyInput(this); });
+                input.addEventListener('change', function() { validateAndCorrectCompetencyInput(this); });
+            });
+
+            document.querySelectorAll('#middleManagementTab .numeric-input').forEach(input => {
+                attachNumericValidation(input);
+            });
+
+            calculateMiddleManagement();
         }
 
         function calculateMiddleManagement() {
@@ -1943,6 +1936,7 @@
 
         function calculateAllTab2() {
             const weights = getEvaluationWeights();
+            const evaluationType = document.getElementById('evaluationType').value;
             let totalDeservedPercentage = 0;
             let totalMaxScoreSumTab2 = 0;
             const tab2Rows = document.querySelectorAll('#tab2 .evaluation-table tbody tr[data-item]');
@@ -2177,6 +2171,9 @@
                 input.addEventListener('input', calculateAllTab3);
                 input.addEventListener('change', calculateAllTab3);
             });
+            document.querySelectorAll('#tab3 .evaluation-table .numeric-input').forEach(input => {
+                attachNumericValidation(input);
+            });
             calculateAllTab3();
         }
 
@@ -2231,6 +2228,9 @@
             document.querySelectorAll('#supportServicesTab .evaluation-table input').forEach(input => {
                 input.addEventListener('input', calculateAllSupportServicesTab);
                 input.addEventListener('change', calculateAllSupportServicesTab);
+            });
+            document.querySelectorAll('#supportServicesTab .evaluation-table .numeric-input').forEach(input => {
+                attachNumericValidation(input);
             });
             calculateAllSupportServicesTab();
         }
@@ -2595,6 +2595,36 @@
             });
             
             location.reload();
+        }
+
+        function attachNumericValidation(input) {
+            if (input.dataset.numericValidationAttached === 'true') {
+                return;
+            }
+            input.dataset.numericValidationAttached = 'true';
+
+            input.addEventListener('input', function(e) {
+                validateNumericInput(this);
+            });
+
+            input.addEventListener('keydown', function(e) {
+                if ([8, 9, 13, 27, 46].indexOf(e.keyCode) !== -1 ||
+                    [37, 38, 39, 40].indexOf(e.keyCode) !== -1 ||
+                    (e.ctrlKey && [65, 67, 86, 88].indexOf(e.keyCode) !== -1)) {
+                    return;
+                }
+
+                if (!/^[0-9.-]$/.test(e.key)) {
+                    e.preventDefault();
+                }
+            });
+
+            input.addEventListener('paste', function(e) {
+                const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+                if (!/^[0-9.-]*$/.test(pastedData)) {
+                    e.preventDefault();
+                }
+            });
         }
 
         function validateNumericInput(input) {
