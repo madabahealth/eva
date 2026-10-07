@@ -1440,14 +1440,23 @@
             window.location.href = 'login.html';
         }
         
+        /*
+         * تنسيق القيم بدون تقريب (بدون جبر):
+         * - الرقم الصحيح يظهر كما هو، مثل 98
+         * - الرقم ذو الكسور يظهر بمنزلتين عشريتين كحد أقصى، مثل 98.45
+         * - أي منزلة زائدة عن المنزلتين تُقطع ولا تُقرَّب
+         */
         function formatOutputValue(value, decimalPlaces = 2) {
-            if (isNaN(value) || value === null) {
+            if (value === null || value === '' || isNaN(value)) {
                 return '';
             }
-            if (value % 1 === 0) {
-                return value.toFixed(0);
-            }
-            return value.toFixed(decimalPlaces);
+            const factor = Math.pow(10, decimalPlaces);
+            // إزالة أخطاء الفاصلة العائمة (مثل 98.44999999) قبل القص
+            const scaled = Math.round(value * factor * 1e6) / 1e6;
+            // قص المنازل الزائدة بدون تقريب
+            const truncated = Math.trunc(scaled) / factor;
+            // الأرقام الصحيحة بدون كسور، والكسور بدون أصفار زائدة
+            return String(parseFloat(truncated.toFixed(decimalPlaces)));
         }
 
         function getEvaluationWeights() {
@@ -2411,7 +2420,7 @@
             document.getElementById('summaryTab2Percentage').value = formatOutputValue(tab2Percentage);
 
             const finalTotalScore = tab3Mark + tab1Evaluation + tab2Percentage;
-            document.getElementById('finalTotalScore').value = formatOutputValue(finalTotalScore, 1);
+            document.getElementById('finalTotalScore').value = formatOutputValue(finalTotalScore);
 
             let overallGrade = '';
             if (evaluationType === 'middle') {
@@ -2448,7 +2457,7 @@
             document.getElementById('summarySupportServicesTab2Percentage').value = formatOutputValue(tab2Percentage);
 
             const finalTotalScore = tabMark + tab1Evaluation + tab2Percentage;
-            document.getElementById('finalTotalScoreAux').value = formatOutputValue(finalTotalScore, 1);
+            document.getElementById('finalTotalScoreAux').value = formatOutputValue(finalTotalScore);
 
             let overallGrade = '';
             if (finalTotalScore >= 85) {
@@ -2519,7 +2528,7 @@
                 }
             });
 
-            document.getElementById('totalAchievedUnderTrial').value = formatOutputValue(totalAchievedScore, 0);
+            document.getElementById('totalAchievedUnderTrial').value = formatOutputValue(totalAchievedScore);
 
             let overallGrade = '';
             if (totalAchievedScore >= 85) {
